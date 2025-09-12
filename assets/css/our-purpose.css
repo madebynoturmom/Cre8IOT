@@ -1,0 +1,70 @@
+/* Our Purpose page styles - page specific overrides and layout
+   Uses theme variables defined in assets/css/style.css
+*/
+
+/* Hero */
+.page-hero{
+  padding: 72px 0 100px;
+  background: linear-gradient(180deg, rgba(14,165,164,0.06), rgba(91,33,182,0.03));
+  border-bottom: 1px solid var(--border);
+}
+.page-hero .container{max-width:1100px}
+.page-hero h1{font-size:2.8rem;margin:0 0 20px;color:var(--primary);line-height:1}
+.page-hero p{font-size:1.05rem;color:var(--muted);max-width:74ch;margin:0}
+
+/* Purpose block layout */
+.our-purpose{padding:48px 48px}
+.purpose-text h4.overline{color:var(--primary);font-weight:800;letter-spacing:.08em}
+.purpose-text h2{font-size:1.9rem;margin:6px 0 12px}
+.purpose-text p{color:var(--muted);line-height:1.6}
+.checklist{margin-top:14px;padding-left:20px}
+.checklist li{margin:8px 0;color:var(--muted)}
+
+/* Images grid */
+.purpose-images .img-box{background:var(--card);padding:6px;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.purpose-images .img-box img{display:block;width:100%;height:160px;object-fit:cover;border-radius:8px}
+@media(min-width:1000px){
+  .purpose-images .img-box img{height:140px}
+}
+
+/* Stats */
+.purpose-stats .card.stat{background:linear-gradient(180deg, var(--card), rgba(255,255,255,0.02));padding:20px;border-radius:12px;box-shadow:var(--shadow)}
+.purpose-stats h2{font-size:1.6rem}
+.purpose-stats p{color:var(--muted)}
+
+/* Pillars cards */
+article.card{background:var(--card);border-radius:12px;padding:18px;box-shadow:var(--shadow)}
+article.card .icon{width:48px;height:48px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:linear-gradient(180deg,var(--bg2),var(--bg1));color:var(--primary);}
+article.card h3{font-size:1.05rem;margin:0 0 6px}
+article.card p{margin:0;color:var(--muted)}
+
+/* CTA */
+section .card > div a.btn.primary{background:linear-gradient(90deg,var(--primary),var(--accent));border:none}
+section .card > div a.btn.ghost{border:1px solid var(--border)}
+
+/* Small tweaks for mobile */
+@media(max-width:900px){
+  .page-hero h1{font-size:2rem}
+  .purpose-images .img-box img{height:120px}
+  .grid-2{grid-template-columns:1fr}
+}
+
+/* Focus states */
+.explore-btn:focus, .btn:focus { outline: 3px solid var(--focus-ring); }
+
+/* Page section spacing */
+.page-hero{ margin-bottom: 28px }
+.our-purpose{ margin-bottom: 36px }
+.purpose-stats{ margin: 28px 0 36px }
+.container + section{ margin-top: 18px }
+.card.stat{ padding: 26px }
+
+@media(max-width:900px){
+  .page-hero{ margin-bottom: 20px }
+  .our-purpose{ margin-bottom: 24px }
+  .purpose-stats{ margin: 20px 0 }
+}
+
+/* move the 'How We Deliver' block lower on page */
+.purpose-pillars{ margin-top: 36px; }
+@media(max-width:900px){ .purpose-pillars{ margin-top: 18px } }

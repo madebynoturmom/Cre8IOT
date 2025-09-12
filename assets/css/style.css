@@ -1,0 +1,940 @@
+/* Circular progress for hero slider */
+.hero-circle-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0 18px;
+  height: 40px;
+  width: 40px;
+}
+.hero-circle-progress svg {
+  display: block;
+  transform: rotate(-90deg); /* start progress at top */
+}
+.hero-circle-progress .circle-bg {
+  stroke: #fff;
+  opacity: 0.18;
+}
+.hero-circle-progress .circle-fg {
+  stroke: var(--primary, #2dd4bf);
+  transition: stroke-dashoffset 0.2s linear;
+}
+/* =========================
+   THEME & BASE
+   ========================= */
+:root{
+  /* Light theme (default) */
+  --bg:#f8fafc;           /* page background */
+  --surface:#ffffff;      /* card / surface */
+  --card:#fbfdff;         /* subtle card background */
+  --text:#0b1220;         /* primary text (near-black) */
+  --muted:#6b7280;        /* muted text */
+  --primary:#0ea5a4;      /* teal */
+  --primary-ink:#ffffff;  /* text on primary */
+  --accent:#5b21b6;       /* purple accent */
+  --ring:#cbd5e1;
+
+  /* Layout */
+  --max:1152px;
+  --radius:12px;
+  --gap:24px;
+  --shadow:0 8px 20px rgba(16,24,40,0.06);
+
+  /* Additional UI helpers */
+  --btn-hover-shadow: 0 8px 20px rgba(16,24,40,0.06);
+  --submenu-shadow: 0 12px 30px rgba(16,24,40,0.06);
+  --band-dark-overlay: rgba(0,0,0,0.08);
+  --img-hover-shadow: 0 12px 30px rgba(16,24,40,0.12);
+
+  /* Background layers (light subtle) */
+  --bg0: #ffffff;
+  --bg1: #f8fafc;
+  --bg2: #eef2f7;
+  /* UI helpers */
+  --border: rgba(16,24,40,0.06);
+  --progress-track: rgba(16,24,40,0.06);
+  --progress-inner-shadow: rgba(255,255,255,0.02);
+  --focus-ring: rgba(14,165,164,0.12);
+  --btn-secondary-bg: var(--card);
+  --primary-glow: rgba(14,165,164,0.12);
+}
+
+/* Dark theme override (applies when .dark-theme is on <html> or <body>) */
+.dark-theme{
+  --bg:#0b0e14;
+  --surface:#101626;
+  --card:#151b2d;
+  --text:#e6e9ef;
+  --muted:#9aa4b2;
+  --primary:#2dd4bf;
+  --primary-ink:#063f3a;
+  --accent:#7c3aed;
+  --ring:#334155;
+  --shadow:0 10px 30px rgba(0,0,0,.25);
+  --btn-hover-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  --submenu-shadow: 0 24px 60px rgba(0,0,0,0.22);
+  --band-dark-overlay: rgba(255,255,255,0.02);
+  --img-hover-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  --bg0:#0a0f1f;
+  --bg1:#0b1324;
+  --bg2:#0b0e14;
+  --border: rgba(255,255,255,0.06);
+  --progress-track: rgba(255,255,255,0.04);
+  --progress-inner-shadow: rgba(0,0,0,0.06);
+  --focus-ring: rgba(45,212,191,0.12);
+  --btn-secondary-bg: #0f172a;
+  --primary-glow: rgba(45,212,191,0.35);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  color:var(--text);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  background:none; /* gradient moved to ::before */
+}
+body::before{
+  content:"";
+  position:fixed; inset:0; z-index:-3;
+  background:
+    radial-gradient(60% 50% at 50% 0%, rgba(14,165,164,0.06), transparent 60%),
+    radial-gradient(40% 50% at 70% 100%, rgba(91,33,182,0.03), transparent 60%),
+    linear-gradient(180deg, var(--bg1), var(--bg0) 35%, var(--bg2) 100%);
+  background-attachment:fixed, fixed, fixed;
+}
+
+img{max-width:100%;display:block}
+.container{max-width:var(--max);margin:auto;padding:0 20px}
+.narrow{max-width:760px}
+.grid-2{display:grid;gap:var(--gap);grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{display:grid;gap:var(--gap);grid-template-columns:repeat(3,minmax(0,1fr))}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+/* Links / Buttons */
+a{color:inherit}
+.link{color:var(--primary);text-decoration:none}
+.link:hover{text-decoration:underline}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;border:1px solid #1e2636;text-decoration:none;color:var(--text);transition:transform .15s ease, box-shadow .15s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--btn-hover-shadow)}
+.btn.primary{background:var(--primary);color:var(--primary-ink);border-color:transparent;font-weight:600}
+.btn.secondary{background:#1a2235}
+.btn.ghost{background:transparent; position:relative; z-index:2;}
+
+/* Pulse animation for Discover how button */
+/* Pulse only on entrance, not hover */
+.btn.ghost {
+  animation: btnPulse 1.8s cubic-bezier(.4,0,.2,1) 2;
+  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.btn.ghost:hover {
+  color: var(--primary-ink);
+  background: var(--primary);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 8px rgba(14,165,164,0.18);
+  transform: scale(1.06);
+}
+@keyframes btnPulse {
+  0% { box-shadow: 0 0 0 0 rgba(14,165,164,0.12); transform: scale(1); }
+  100% { box-shadow: 0 0 0 8px rgba(14,165,164,0.18); transform: scale(1.04); }
+}
+@keyframes btnPulseHover {
+  0% { box-shadow: 0 0 0 8px rgba(14,165,164,0.18); transform: scale(1.04); }
+  100% { box-shadow: 0 0 0 0 rgba(14,165,164,0.12); transform: scale(1.08); }
+}
+
+/* Icons (inline SVG) */
+.icon{display:inline-flex;vertical-align:middle}
+.icon svg{width:1.1em;height:1.1em;stroke:currentColor;fill:none}
+
+/* =========================
+   HEADER / NAV
+   ========================= */
+.site-header{position:sticky;top:0;z-index:360}
+.site-header.light{
+  background:var(--surface); /* white in light theme, dark in dark-theme */
+  backdrop-filter:saturate(100%) blur(6px);
+  border-bottom:1px solid rgba(16,24,40,0.06);
+  color:var(--text);
+  box-shadow: 0 6px 18px rgba(16,24,40,0.03);
+}
+.header-inner{height:72px;display:flex;align-items:center;justify-content:space-between}
+/* Desktop: show nav panel inline and hide mobile intro text */
+.nav{margin-left:auto;display:flex;align-items:center}
+.nav-panel{display:flex;align-items:center;gap:20px}
+.nav-intro{display:none}
+.brand{display:inline-flex;gap:10px;align-items:center;text-decoration:none}
+.header-logo{height:48px;width:auto;display:block}
+
+/* Logo variants: show light variant by default, swap to dark variant when .dark-theme is active */
+.header-logo--light{display:block}
+.header-logo--dark{display:none}
+
+/* When dark theme is active on root, show the dark SVG and hide the light one */
+.dark-theme .header-logo--light{display:none}
+.dark-theme .header-logo--dark{display:block}
+
+.nav{margin-left:auto}
+.nav-list{list-style:none;display:flex;align-items:center;gap:36px;margin:0;padding:0}
+.nav-list>a,.nav-list>li>a,.sub-trigger{
+  color:var(--text);text-decoration:none;background:none;border:0;cursor:pointer;
+  padding:10px 0;font-weight:700;letter-spacing:.06em;text-transform:uppercase
+}
+  .nav-list>li>a:hover,.sub-trigger:hover{ text-decoration:underline; text-underline-offset:4px; color:var(--primary) }
+/* Theme toggle button in header */
+.theme-toggle{
+  margin-left:12px; display:inline-flex; align-items:center; justify-content:center;
+  height:36px; min-width:36px; padding:6px 8px; border-radius:8px; background:transparent;
+  border:1px solid rgba(16,24,40,0.06); color:var(--text); cursor:pointer; font-size:16px;
+}
+.theme-toggle:focus{outline:none; box-shadow:0 0 0 4px rgba(14,165,164,0.12)}
+
+/* In dark theme reduce the header shadow and adjust toggle border for contrast */
+.dark-theme .site-header.light{ box-shadow: 0 6px 18px rgba(0,0,0,0.45); border-bottom:1px solid rgba(255,255,255,0.04) }
+.dark-theme .theme-toggle{ border-color: rgba(255,255,255,0.06) }
+
+/* Dropdown */
+.has-sub{position:relative}
+.has-sub .submenu{
+  display:none;                    /* hidden by default */
+  position:absolute; top:calc(100% + 12px); left:0;
+  min-width:360px; background:var(--surface); color:var(--text);
+  border:1px solid var(--border); border-radius:12px;
+  box-shadow:var(--submenu-shadow); padding:8px 0; z-index:100;
+}
+.has-sub .submenu li{list-style:none}
+.has-sub .submenu a{
+  display:block; padding:14px 22px; text-decoration:none; color:var(--text);
+  font-weight:800; letter-spacing:.06em; text-transform:uppercase; line-height:1.2;
+}
+.has-sub .submenu li+li{border-top:1px solid var(--border)}
+.has-sub .submenu a:hover{background:var(--card)}
+
+/* Desktop: open on hover */
+@media (hover:hover) and (pointer:fine){ .has-sub:hover > .submenu{display:block} }
+/* Mobile: open when toggled by JS */
+.has-sub.open > .submenu{display:block}
+
+/* Mobile nav panel */
+.nav-toggle{display:none;background:transparent;border:0;color:var(--text);font-size:24px}
+/* mobile-only close button: hidden on desktop */
+.nav-close{display:none}
+@media (max-width:960px){
+  .nav-toggle{display:inline-flex;margin-left:auto}
+  /* Fullscreen slide-in panel */
+  .nav {
+  position: fixed;
+  inset: 0 0 0 0;
+  margin-left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* theme-aware background so mobile nav matches light/dark themes */
+  background: var(--surface);
+    transform: translateX(-100%);
+    transition: transform .35s ease;
+  z-index: 420; /* above hero-slider (20) and header (360) */
+    padding-top:72px;
+    overflow:auto;
+  }
+  .nav.open{ transform: translateX(0); }
+
+  .nav-close{ display:inline-flex; position:absolute; right:20px; top:18px; background:transparent; border:0; color:var(--primary); font-size:28px; cursor:pointer }
+
+  .nav-panel{ display:flex; flex-direction:column; gap:28px; padding:28px 36px; }
+  .nav-intro{ color:var(--muted); max-width:420px }
+  .nav-intro h3{ color:var(--text); margin:0 0 8px; font-size:1.2rem }
+
+  .nav-list{ flex-direction:column; gap:24px; padding:0; margin:0; list-style:none }
+  .nav-list>li{ width:100%; border-bottom:1px solid var(--border); }
+.nav-list>li>a, .sub-trigger{ padding:12px 0; width:100%; text-align:left; font-size:1.05rem; color:var(--text); font-weight:700 }
+  .nav-list .chev{ margin-left:auto; color:#94a3b8 }
+
+  /* Ensure nav content uses theme-aware text color */
+  .nav, .nav *{ color:var(--text) }
+
+  /* dark-theme: use a translucent dark background overlay for the mobile nav */
+  .dark-theme .nav{
+    background: linear-gradient(180deg, rgba(8,10,12,0.98), rgba(6,8,12,0.96));
+  }
+
+  .has-sub .submenu{ position:static; min-width:0; box-shadow:none; border:0; padding-left:18px; background:transparent }
+  .has-sub .submenu a{ color:var(--muted); padding:10px 0; font-weight:600 }
+  .nav.open .has-sub .submenu a{ color:var(--text) }
+  .has-sub .submenu li+li{ border-top:0 }
+
+  /* Mobile: give submenu a visible background and border in light theme */
+  .nav.open .has-sub .submenu{
+    background:var(--surface);
+    border:1px solid var(--border);
+    box-shadow:var(--submenu-shadow);
+    padding:12px 18px; margin:8px 0; border-radius:12px;
+    color:var(--text);
+  }
+
+  /* Prevent body scroll when nav open */
+  body.mobile-nav-open{ overflow:hidden }
+}
+
+/* When the mobile nav panel is open, hide hero controls/progress to avoid overlapping UI */
+body.mobile-nav-open .hero-controls,
+body.mobile-nav-open .hero-progress{
+  display:none !important;
+  visibility:hidden !important;
+  pointer-events:none !important;
+}
+
+/* Optional dim overlay behind mobile nav to visually separate hero */
+@media (max-width:960px){
+  body.mobile-nav-open::after{
+    content:"";
+    position:fixed; inset:0; z-index:120; /* below nav (200) but above hero (20) */
+    background:rgba(0,0,0,0.55);
+    backdrop-filter:blur(2px);
+    pointer-events:none;
+  }
+}
+
+/* =========================
+   SECTIONS
+   ========================= */
+.page-hero, .tiles, .band, .band-dark{
+  background:transparent !important; border:0 !important; box-shadow:none;
+}
+.hero{position:relative;padding:0 0 0}
+.hero-inner{display:grid;gap:var(--gap);grid-template-columns:1.2fr .8fr;align-items:center}
+.hero .cta{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+.hero-art{height:360px;border-radius:24px;background:
+  radial-gradient(60% 60% at 70% 30%,rgba(14,165,164,0.12),transparent 60%),
+  radial-gradient(40% 40% at 30% 70%,rgba(91,33,182,0.06),transparent 60%),
+  linear-gradient(180deg,var(--bg1),var(--bg0));
+  border:1px solid var(--border);box-shadow:var(--shadow)}
+
+.hero-slider{
+  position:relative;
+  z-index:20;
+  isolation:isolate;
+  overflow:hidden;
+  min-height:100vh;
+  color:var(--text);
+  background: linear-gradient(180deg, rgba(16,24,40,0.04), rgba(8,10,12,0.02));
+  margin-bottom:0;
+  padding-bottom:0;
+}
+.hero-slider::before{
+  /* decorative base behind slides */
+  content: "";
+  position: absolute; inset: 0; z-index: 0; /* keep decorative layer behind slides but above page background */
+  background:
+    radial-gradient(50% 40% at 15% 8%, rgba(45,212,191,0.03), transparent 18%),
+    radial-gradient(35% 30% at 85% 88%, rgba(124,58,237,0.02), transparent 20%),
+    linear-gradient(180deg, rgba(8,12,18,0.06), rgba(6,8,12,0.12));
+  pointer-events: none;
+}
+.hero-slides{position:relative; z-index:0; min-height:100vh; margin-bottom:0; padding-bottom:0;}
+.hero-slide{
+  position:absolute; inset:0; display:flex; align-items:center;
+  transition:opacity .6s ease, transform .6s ease; opacity:0; pointer-events:none;
+  min-height:100vh; /* ensure absolute slides have a minimum visible height */
+}
+.hero-slide.active{opacity:1; pointer-events:auto}
+.hero-slides{position:relative; z-index:100; min-height:64vh;} /* slides fill hero-slider so absolute children size correctly */
+
+.hero-slide .slide-bg{
+  position:absolute; inset:0; display:block; width:100%; height:100%;
+  background-size:cover; background-position:center; background-repeat:no-repeat;
+  background-color: transparent; z-index:10; transition:opacity .35s ease, filter .35s ease;
+  min-height:64vh; /* defensive: make sure background doesn't collapse */
+}
+.hero-slide .slide-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(16,24,40,0.45) 0%, rgba(16,24,40,0.55) 100%);
+  z-index: 15;
+  pointer-events: none;
+}
+/* ensure the image element covers the slide area */
+.slide-bg .slide-img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; z-index:0}
+.slide-content{position:relative; z-index:20; padding:96px 20px; max-width:720px} /* content above slides */
+.slide-content .lead{color:var(--muted)}
+
+/* Desktop: align hero content to a consistent left gutter and improve vertical spacing */
+@media (min-width:1100px){
+  .hero-slider{min-height: 855px;}
+  .slide-content{padding:120px 20px; max-width:760px; margin-left:6px}
+  .hero-slide h1{font-size:2.6rem; line-height:1.05}
+  .hero-controls{bottom:0px}
+  .hero-tabs{gap:44px}
+  /* align progress width with slide-content max width */
+  .hero-progress{max-width:760px}
+}
+
+/* Large desktops: increase left gutter to keep content readable */
+@media (min-width:1400px){
+  .slide-content{margin-left:140px}
+  /* keep progress width consistent with slide-content */
+  .hero-progress{max-width:760px}
+}
+.overline{color:var(--primary); text-transform:uppercase; font-weight:700; letter-spacing:.08em}
+.hero-slide h1{font-size:2.2rem; font-weight:700; margin:12px 0 12px}
+.hero-slide .lead{color:var(--muted); max-width:60ch}
+
+.hero-controls{
+  position:absolute;
+  left:0; right:0; bottom:0; z-index:1000;
+  display:flex; flex-direction:row; align-items:center; justify-content:center;
+  padding:0 20px; pointer-events:auto;
+  gap:24px;
+  width:100%;
+  min-height:56px;
+}
+
+/* Force hero text to white and keep it across theme changes */
+.hero-slider,
+.hero-slider .slide-content,
+.hero-slider .hero-tabs li,
+.hero-slider .hero-controls{
+  color: #fff !important;
+}
+.hero-slider .slide-content .lead{ color: #fff !important; }
+.hero-slider .overline{ color: #fff !important; }
+.hero-slider .btn{ color: #fff !important; }
+.hero-tabs{
+  display:flex;
+  gap:28px;
+  list-style:none;
+  margin:0;
+  padding:0;
+  align-items:center;
+  font-size:1.1rem;
+  font-weight:700;
+}
+.hero-tabs li{color:var(--muted); font-weight:700; cursor:pointer; padding:8px 12px; position:relative}
+.hero-tabs li[aria-selected="true"]{color:var(--text)}
+.hero-tabs .progress{display:none}
+
+/* Full-width segmented progress bar (Aramco-style) - placed under the tabs */
+    @media (prefers-color-scheme: dark) {
+      .service-card, .card {
+        box-shadow: 0 0 16px 2px rgba(45,212,191,0.18), 0 0 32px 4px rgba(124,58,237,0.12);
+        border: 1.5px solid rgba(45,212,191,0.18);
+        transition: box-shadow 0.3s, border-color 0.3s;
+      }
+      .service-card:hover, .card:hover {
+        box-shadow: 0 0 32px 8px rgba(45,212,191,0.28), 0 0 48px 12px rgba(124,58,237,0.18);
+        border-color: rgba(45,212,191,0.28);
+      }
+    }
+
+/* Desktop: align hero content and controls to the container's left edge */
+@media (min-width: 961px) {
+  /* compute left offset so content lines up with centered .container */
+  .slide-content{
+    margin-left: clamp(28px, calc((100vw - var(--max)) / 2 + 20px), 120px);
+    padding-left: 0;
+  }
+
+  /* Instead of placing per-element margins, give the controls the same left padding
+     used by the slide content. This keeps .hero-tabs and .hero-progress perfectly
+     aligned with the hero content and avoids complex width math. */
+  .hero-controls{
+    left:0; right:0; justify-content:flex-start; align-items:flex-start;
+    padding-left: clamp(28px, calc((100vw - var(--max)) / 2 + 20px), 120px);
+    padding-right: 20px;
+    pointer-events:auto;
+  }
+
+  .hero-controls > .hero-tabs{ margin-left: 0; }
+  .hero-progress{
+  margin-left: 0;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  padding-left: clamp(28px, calc((100vw - var(--max)) / 2 + 20px), 120px);
+  padding-right: 20px;
+  }
+}
+.hero-progress .segment{flex:1; background:var(--progress-track); border-radius:999px; overflow:hidden; height:8px; box-shadow:inset 0 1px 0 var(--progress-inner-shadow)}
+.hero-progress .segment .fill{display:block; width:0%; height:100%; background:linear-gradient(90deg,#2dd4bf,#7c3aed); transition:width linear}
+
+.band{padding:56px 0}
+.band-dark::before{content:"";position:absolute;inset:0;background:var(--band-dark-overlay);pointer-events:none}
+.band-dark{position:relative}
+
+/* Cards / tiles */
+.tile,.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.card h3{margin-top:0}
+
+/* Services image cards grid (used on index services section) */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:24px;
+}
+.image-card{
+  display:block;
+  position:relative;
+  border-radius:12px;
+  overflow:hidden;
+  min-height:160px;
+  background-size:cover;
+  background-position:center;
+  text-decoration:none;
+  color:var(--surface);
+  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+}
+
+/* Remove dark overlay for Services cards while keeping centered text */
+.services .image-card .card-content{background:none !important;}
+.services .image-card::after{display:none !important;}
+/* Boost readability with a subtle layered text shadow */
+.services .image-card h3{text-shadow:0 2px 6px rgba(0,0,0,0.55),0 0 2px rgba(0,0,0,0.4);}
+
+/* Lazy-bg placeholder: subtle surface + shimmer */
+.lazy-bg{ background-color:var(--bg1); background-image:none; }
+.lazy-bg::after{ content:''; position:absolute; inset:0; background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.04), rgba(255,255,255,0.02)); opacity:0.6 }
+
+/* Disable shimmer overlay specifically for hero slide placeholders so the image beneath is visible once set */
+.hero-slide .lazy-bg::after{ opacity:0; transition:opacity .25s ease }
+.image-card .card-content{
+  position:absolute;
+  inset:0; display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.48) 100%);
+  text-align:center; padding:20px;
+}
+.image-card h3{color:#fff;margin:0;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,0.6)}
+
+/* hover/active refinement */
+.image-card:hover{ transform:translateY(-6px); box-shadow:0 20px 40px rgba(2,6,23,0.6); border-color:var(--primary); }
+.image-card{ transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease }
+
+/* Discover heading styles */
+.overline{ color:var(--primary); text-transform:uppercase; font-weight:700; letter-spacing:.08em }
+.services .overline{ margin-bottom:8px; display:inline-block }
+
+
+/* Single centered TMS card */
+@media (min-width: 960px){
+  .cards-grid{grid-template-columns:repeat(3, 1fr)}
+}
+@media (max-width: 960px){
+  .cards-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width: 600px){
+  .cards-grid{grid-template-columns:1fr}
+}
+
+
+/* Footer */
+.site-footer{background:transparent;border-top:1px solid var(--border);padding:40px 0;margin-top:64px}
+.logo-mark{width:40px;height:40px;opacity:.9;margin-bottom:8px}
+.footer-links{display:grid;gap:8px}
+.footer-legal{align-self:end}
+.footer-logo{max-width:140px;height:auto;display:block;margin-bottom:12px}
+.footer-brand{display:flex;flex-direction:column;align-items:flex-start}
+
+/* Footer grid: quick links + social icons */
+.footer-grid{display:flex;gap:48px;align-items:flex-start;justify-content:space-between;padding:28px 20px}
+.footer-col{flex:1}
+.footer-links-col{max-width:520px}
+.footer-col-title{font-weight:700; text-transform:uppercase; letter-spacing:.08em; margin:0 0 12px}
+.footer-links-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 28px}
+.footer-links-list a{color:var(--text); text-decoration:none; font-weight:500}
+.footer-links-list a:hover{text-decoration:underline;color:var(--primary)}
+
+.footer-social-col{display:flex;justify-content:flex-end;align-items:center}
+.social-list{display:flex;flex-direction:column;gap:18px}
+.social-btn{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--border);color:var(--text);text-decoration:none;background:transparent}
+.social-btn svg{width:18px;height:18px}
+.social-btn:hover{background:var(--card);border-color:var(--primary);color:var(--primary)}
+
+/* Footer bottom small text */
+.footer-bottom{padding-top:18px;border-top:1px solid var(--border);margin-top:12px;text-align:center}
+
+/* Floating up button style */
+.fab-up{position:fixed;right:24px;bottom:80px;width:48px;height:48px;background:var(--primary);color:var(--primary-ink);display:flex;align-items:center;justify-content:center;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.18);z-index:120;font-size:1.2em;text-decoration:none}
+
+@media (max-width:960px){
+  .footer-grid{flex-direction:column;align-items:flex-start}
+  .footer-social-col{width:100%;display:flex;justify-content:flex-start}
+  .social-list{flex-direction:row}
+  .footer-links-list{grid-template-columns:1fr}
+}
+
+/* Floating WhatsApp */
+.fab-whatsapp{position:fixed;right:20px;bottom:20px;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--primary);color:var(--primary-ink);text-decoration:none;box-shadow:var(--shadow)}
+
+/* =========================
+   FORMS
+   ========================= */
+form label{display:grid;gap:6px;margin-bottom:10px}
+input, textarea, select{
+  background:var(--surface); color:var(--text);
+  border:1px solid rgba(16,24,40,0.06);
+  border-radius:12px; padding:12px 14px;
+  font:inherit; width:100%; box-sizing:border-box;
+}
+input:focus, textarea:focus, select:focus{
+  outline:none; border-color:#2dd4bf; box-shadow:0 0 0 2px rgba(45,212,191,.25);
+}
+select{
+  appearance:none; -webkit-appearance:none; -moz-appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat:no-repeat; background-position:right 12px center; background-size:16px 16px; padding-right:40px;
+}
+.form-status{min-height:1em;font-size:.95em;color:var(--muted);}
+.map-embed iframe{width:100%;height:280px;border:0;border-radius:12px}
+
+/* =========================
+   CONTACT PAGE LAYOUT
+   ========================= */
+.page-hero{padding:16px 0 16px}
+.hero-left .container{max-width:var(--max);margin:0 auto;padding:0 20px;text-align:left}
+.hero-left h1{margin-bottom:5px}
+.hero-left p{margin-top:0;color:#d1d5db}
+
+.contact-section{margin-top:0}
+.contact-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:flex-start;
+}
+.offices{display:flex;flex-direction:column;gap: 7px}
+/* Offices column spacing */
+.offices {
+  margin-top: -50px;      /* move up (tweak -6px…-12px to taste) */
+  display: flex;
+  flex-direction: column;
+  gap:8px;             /* tighter spacing between cards */
+}
+
+/* Reduce default h2 spacing so the heading sits closer to the first card */
+.offices h2 {
+  margin-top: 0;
+  margin-bottom: 6px;    /* was bigger by default */
+}
+
+/* Ensure the first card never adds extra top gap */
+.offices .card:first-of-type { margin-top: 0; }
+
+
+/* Two-input rows in the form */
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px}
+
+/* Actions row */
+.actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+
+/* Reduce extra margins between sequential cards inside generic containers */
+.container .card + .card{margin-top:0}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width:1100px){
+  .hero-inner{grid-template-columns:1fr 1fr}
+  .tiles{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:960px){
+  .grid-3{grid-template-columns:1fr 1fr}
+  .hero-inner{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .field-row{grid-template-columns:1fr}
+}
+/* Hero responsive tweaks */
+@media (max-width:960px){
+  .hero-slider{min-height:56vh}
+  .slide-content{padding:36px 16px; max-width:100%}
+  .hero-slide h1{font-size:1.6rem}
+  .hero-controls{bottom:20px}
+}
+@media (max-width:680px){
+  .slide-content{padding:28px 14px}
+  .hero-slide h1{font-size:1.2rem}
+  .hero-tabs{gap:14px}
+  .hero-progress{padding:0 12px; margin-top:8px; max-width:none; width:100%}
+}
+@media (max-width:680px){
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  .tiles{grid-template-columns:1fr 1fr}
+}
+
+/* About Hero */
+.about-hero { padding: 64px 0; }
+
+.about-images {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle-img {
+  position: absolute;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.circle-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.circle-img.big { width: 240px; height: 240px; top: 0; left: 20px; z-index: 2; }
+.circle-img.medium { width: 180px; height: 180px; bottom: -40px; left: -10px; z-index: 1; }
+.circle-img.small { width: 160px; height: 160px; bottom: -20px; right: 0; z-index: 3; }
+
+.about-text .overline {
+  text-transform: uppercase;
+  color: var(--primary);
+  font-weight: 700;
+  letter-spacing: .05em;
+  margin-bottom: 8px;
+}
+.about-text h1 { margin: 0 0 12px; }
+.about-text p { margin: 0 0 16px; color: var(--muted); }
+
+
+/* Mission & Vision Section */
+.mission-vision {
+  margin-bottom: 48px;   /* space below the whole block */
+}
+
+.mission-vision .card {
+  padding: 24px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 320px;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;   /* ensures gap on smaller screens when stacked */
+}
+
+/* Hover Glow */
+.mission-vision .card:hover {
+  box-shadow: 0 0 25px rgba(45, 212, 191, 0.35);
+  transform: translateY(-4px);
+  border-color: rgba(45, 212, 191, 0.5);
+}
+
+/* Equal spacing between title and text */
+.mission-vision h2 {
+  margin: 12px 0;
+  font-weight: 700;
+}
+.mission-vision p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.mission-vision .mv-icon img,
+.mission-vision .mv-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+/* Add spacing above Mission/Vision section */
+.mission-vision {
+  margin-top: 30px;   /* pushes the whole block down */
+}
+
+/* Promo image cards (Aramco-style) */
+.promo-cards{padding:48px 0}
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.image-card{position:relative;display:block;height:320px;border-radius:14px;overflow:hidden;color:#fff;text-decoration:none;box-shadow:var(--shadow);background-size:cover;background-position:center}
+.image-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.45));mix-blend-mode:multiply}
+.image-card .card-content{position:absolute;left:20px;bottom:20px;right:20px;z-index:2}
+.card-overline{display:block;font-weight:700;letter-spacing:.08em;margin-bottom:8px}
+.image-card h3{margin:0;font-size:1.4rem;line-height:1.15;font-weight:700}
+.card-cta{position:absolute;right:18px;bottom:18px;z-index:3;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.18)}
+
+@media (max-width:1100px){.cards-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.cards-grid{grid-template-columns:1fr}.image-card{height:220px}}
+
+/* Center orphan row and improve responsiveness for promo (Explore) cards */
+.promo-cards .cards-grid{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;margin:0 auto;}
+.promo-cards .cards-grid .image-card{flex:1 1 clamp(260px,32%,360px);max-width:360px;aspect-ratio:16/9;height:auto;}
+@media (max-width:900px){.promo-cards .cards-grid .image-card{flex:1 1 clamp(260px,48%,400px);} }
+@media (max-width:640px){.promo-cards .cards-grid .image-card{flex:1 1 100%;max-width:520px;} }
+
+/* Full-card tiles polish */
+.tiles{display:grid;gap:18px}
+.tile-link{display:block;background:var(--card);border-radius:14px;padding:22px;border:1px solid var(--border);text-decoration:none;color:var(--text);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.tile-link:focus{outline:none;box-shadow:0 0 0 4px var(--focus-ring)}
+.tile-link .tile-inner{display:flex;flex-direction:column;gap:8px}
+.tile-link h3{margin:0;font-size:1.15rem}
+.tile-link p{margin:0;color:var(--muted)}
+.tile-link::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--primary);border-top-left-radius:14px;border-bottom-left-radius:14px}
+.tile-link:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(16,24,40,0.08)}
+.tile-link:active{transform:translateY(-1px)}
+
+@media (min-width:960px){.tiles{grid-template-columns:1fr}} /* keep stack on larger view unless you want columns */
+
+/* Services page grid + cards */
+.services{padding:48px 0}
+.services-head{display:flex;flex-direction:column;align-items:center;gap:10px;padding:0 15px !important}
+.services-head .overline, .services-head h2, .services-head a{margin:0;padding:0;text-align:center}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.service-card{display:block;min-height:160px;border-radius:6px;background-size:cover;background-position:center;color:#fff;position:relative;text-decoration:none;overflow:hidden}
+.service-card::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.35) 100%);transition:background 220ms ease}
+.service-card .card-title{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-weight:800;padding:6px 12px;border-radius:4px;text-align:center;font-size:1.05rem;color:var(--white);text-shadow:0 2px 10px rgba(0,0,0,0.6)}
+.service-card:hover::after,.service-card:focus::after{background:linear-gradient(0deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.4) 100%)}
+.service-card{cursor:pointer;transition:transform 220ms ease,box-shadow 220ms ease}
+.service-card:focus{outline:none}
+.service-card:focus-visible{box-shadow:0 0 0 4px rgba(0,123,255,0.18)}
+
+.tms-wrapper{display:flex;justify-content:center;margin-top:36px}
+.tms-card{display:block;width:480px;height:180px;border-radius:6px;background-size:cover;background-position:center;color:#fff;text-decoration:none;position:relative;overflow:hidden}
+.tms-card::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.45) 100%);transition:background 220ms ease}
+.tms-title{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-weight:800;font-size:1.05rem;text-align:center;color:var(--white);text-shadow:0 2px 10px rgba(0,0,0,0.6)}
+.tms-card:hover::after,.tms-card:focus::after{background:linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.6) 100%)}
+.tms-card:focus-visible{box-shadow:0 0 0 4px rgba(0,123,255,0.18)}
+
+@media (max-width:980px){
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .tms-card{width:360px}
+}
+
+@media (max-width:640px){
+  .services-grid{grid-template-columns:1fr}
+  .service-card{min-height:140px}
+  .tms-card{width:100%;height:160px}
+  .services-head{flex-direction:column;align-items:flex-start;gap:10px;padding:0 0px !important}
+}
+
+/* Footer layout */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 20px;
+}
+
+.footer-brand p {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.95em;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.footer-links a {
+  color: var(--text);
+  text-decoration: none;
+  opacity: 0.85;
+}
+.footer-links a:hover { opacity: 1; text-decoration: underline; }
+
+.footer-contact p { margin: 4px 0; }
+.footer-contact a { color: var(--text); text-decoration: none; }
+.footer-contact a:hover { text-decoration: underline; }
+.socials { display: flex; gap: 12px; margin-top: 8px; }
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9em;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .footer-links, .footer-contact {
+    align-items: center;
+  }
+}
+
+/* Responsive styles for mobile view */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .hero-slider {
+    min-height: 60vh;
+  }
+
+  .slide-content {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .service-card img {
+    height: 150px;
+  }
+
+  .cta-band {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .grid-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card {
+    padding: 16px;
+    text-align: center;
+  }
+}
+
+/* Adjust hero text alignment for mobile */
+@media (max-width: 768px) {
+  .slide-content {
+    text-align: left;
+    padding: 20px;
+  }
+
+  .services-grid {
+    padding: 40px 20px;
+  }
+
+  .cards-grid {
+    padding: 0 20px;
+  }
+}
+
+/* =========================
+   SLIDER THEME CHANGE DESIGN
+   ========================= */
+/* Theme slider design */
+.theme-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  background: var(--surface);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.theme-slider .theme-option {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.theme-slider .theme-option:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.theme-slider .theme-option.active {
+  border: 2px solid var(--accent);
+}
