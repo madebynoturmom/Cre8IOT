@@ -497,6 +497,33 @@ body.mobile-nav-open .hero-progress{
   text-decoration:none;
   color:var(--surface);
   box-shadow:var(--shadow);
+
+/* Social icon buttons */
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: var(--muted-background, #f1f5f9);
+  color: var(--text);
+  text-decoration: none;
+  transition: transform 0.12s ease, background 0.12s ease;
+  box-shadow: 0 1px 2px rgba(2,6,23,0.06);
+}
+
+.social-btn:hover,
+.social-btn:focus {
+  transform: translateY(-2px);
+  background: rgba(15,23,36,0.06);
+}
+
+.social-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
   border:1px solid var(--border);
 }
 
