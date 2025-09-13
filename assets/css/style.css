@@ -524,6 +524,19 @@ body.mobile-nav-open .hero-progress{
   height: 18px;
   display: block;
 }
+
+/* Ensure raster/social-image icons fit nicely inside circular buttons
+   - Use max-width/height so images scale down if larger than the circle
+   - Use object-fit to preserve aspect ratio and center inside the button */
+.social-btn .social-icon,
+.social-list .social-icon{
+  max-width: 60%;
+  max-height: 60%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
   border:1px solid var(--border);
 }
 
