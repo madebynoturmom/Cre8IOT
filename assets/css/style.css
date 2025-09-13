@@ -120,7 +120,7 @@ a{color:inherit}
 .btn:hover{transform:translateY(-1px);box-shadow:var(--btn-hover-shadow)}
 .btn.primary{background:var(--primary);color:var(--primary-ink);border-color:transparent;font-weight:600}
 .btn.secondary{
-  background:#0f1724; /* dark navy */
+  background:#0089cf; /* dark navy */
   color:#fff; /* white text */
   border-color:transparent;
   font-weight:700;
