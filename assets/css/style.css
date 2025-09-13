@@ -28,7 +28,7 @@
   --surface:#ffffff;      /* card / surface */
   --card:#fbfdff;         /* subtle card background */
   --text:#0b1220;         /* primary text (near-black) */
-  --muted:#6b7280;        /* muted text */
+  --muted:#000000;        /* muted text */
   --primary:#0ea5a4;      /* teal */
   --primary-ink:#ffffff;  /* text on primary */
   --accent:#5b21b6;       /* purple accent */
