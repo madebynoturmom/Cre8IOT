@@ -1,7 +1,8 @@
+
 <!-- Footer -->
 <footer class="site-footer">
-  <div class="container footer-grid">
-    <div class="footer-col footer-links-col">
+  <div class="container footer-flex">
+    <div class="footer-links-col">
       <h4 class="footer-col-title">Quick Links</h4>
       <ul class="footer-links-list">
         <li><a href="index.html">Home</a></li>
@@ -11,8 +12,8 @@
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
     </div>
-
-    <div class="footer-col footer-social-col" aria-label="Social links">
+    <div class="footer-social-col" aria-label="Social links">
+      <h4 class="footer-col-title">Follow Us</h4>
       <div class="social-list" role="list">
         <a class="social-btn" href="https://twitter.com" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
           <img src="/Cre8IOT/assets/social-icon/twitter.svg" alt="Twitter" class="social-icon" />
@@ -32,14 +33,113 @@
       </div>
     </div>
   </div>
-
   <div class="container footer-bottom">
-    <small
-      >Copyright © 2022 Cre8I OT Sdn. Bhd. (SSM No : 201701015657). All Rights
-      Reserved.</small
-    >
+    <small>Copyright © 2022 Cre8I OT Sdn. Bhd. (SSM No : 201701015657). All Rights Reserved.</small>
   </div>
 </footer>
+
+<style>
+  .site-footer {
+    background: #f9fafb;
+    padding: 40px 0 0 0;
+    font-family: inherit;
+    border-top: 1px solid #e5e7eb;
+  }
+  .footer-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .footer-links-col, .footer-social-col {
+    flex: 1 1 220px;
+    min-width: 200px;
+  }
+  .footer-col-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+  }
+  .footer-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .footer-links-list a {
+    color: #111;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: color 0.2s;
+  }
+  .footer-links-list a:hover {
+    color: #0ea5e9;
+  }
+  .footer-social-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .social-list {
+    display: flex;
+    gap: 18px;
+  }
+  .social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    transition: box-shadow 0.2s, border 0.2s;
+  }
+  .social-btn:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #0ea5e9;
+  }
+  .social-icon {
+    width: 24px;
+    height: 24px;
+    filter: grayscale(0.2);
+  }
+  .footer-bottom {
+    text-align: center;
+    padding: 32px 0 18px 0;
+    color: #475569;
+    font-size: 1rem;
+    margin-top: 24px;
+    border-top: 1px solid #e5e7eb;
+  }
+  @media (max-width: 700px) {
+    .footer-flex {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 32px;
+      padding: 0 12px;
+    }
+    .footer-links-col, .footer-social-col {
+      min-width: 0;
+      width: 100%;
+    }
+    .footer-social-col {
+      align-items: flex-start;
+    }
+    .footer-bottom {
+      font-size: 0.95rem;
+      padding: 24px 0 12px 0;
+    }
+  }
+</style>
 
 <!-- Floating WhatsApp -->
 <a
