@@ -108,37 +108,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Theme toggle: default light, toggle .dark-theme on <html> and persist
-(function themeToggle() {
-  const root = document.documentElement;
-  const key = 'ciot_theme'; // 'dark' or 'light'
-
-  const apply = (mode) => {
-    if (mode === 'dark') root.classList.add('dark-theme');
-    else root.classList.remove('dark-theme');
-    const btn = document.querySelector('.theme-toggle');
-    if (btn) {
-      const pressed = mode === 'dark';
-      btn.setAttribute('aria-pressed', String(pressed));
-      btn.textContent = pressed ? '☀️' : '🌙';
-      btn.title = pressed ? 'Switch to light theme' : 'Switch to dark theme';
-    }
-  };
-
-  // read stored preference
-  const stored = localStorage.getItem(key);
-  if (stored === 'dark' || stored === 'light') apply(stored);
-
-  // click handler
-  document.addEventListener('click', (e) => {
-    const t = e.target.closest('.theme-toggle');
-    if (!t) return;
-    const isDark = document.documentElement.classList.toggle('dark-theme');
-    const mode = isDark ? 'dark' : 'light';
-    localStorage.setItem(key, mode);
-    apply(mode);
-  });
-})();
+// Theme toggle removed: site uses light theme only
 
 // Hero slider: auto-rotate, progress bar, tab click
 document.addEventListener('DOMContentLoaded', function() {

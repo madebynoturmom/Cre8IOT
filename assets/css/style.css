@@ -59,32 +59,7 @@
   --primary-glow: rgba(14,165,164,0.12);
 }
 
-/* Dark theme override (applies when .dark-theme is on <html> or <body>) */
-.dark-theme{
-  --bg:#0b0e14;
-  --surface:#101626;
-  --card:#151b2d;
-  --text:#e6e9ef;
-  --muted:#9aa4b2;
-  --primary:#2dd4bf;
-  --primary-ink:#063f3a;
-  --accent:#7c3aed;
-  --ring:#334155;
-  --shadow:0 10px 30px rgba(0,0,0,.25);
-  --btn-hover-shadow: 0 8px 20px rgba(0,0,0,0.25);
-  --submenu-shadow: 0 24px 60px rgba(0,0,0,0.22);
-  --band-dark-overlay: rgba(255,255,255,0.02);
-  --img-hover-shadow: 0 12px 30px rgba(0,0,0,0.4);
-  --bg0:#0a0f1f;
-  --bg1:#0b1324;
-  --bg2:#0b0e14;
-  --border: rgba(255,255,255,0.06);
-  --progress-track: rgba(255,255,255,0.04);
-  --progress-inner-shadow: rgba(0,0,0,0.06);
-  --focus-ring: rgba(45,212,191,0.12);
-  --btn-secondary-bg: #0f172a;
-  --primary-glow: rgba(45,212,191,0.35);
-}
+/* Note: dark theme removed - site uses the light theme variables defined in :root */
 
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -182,12 +157,7 @@ a{color:inherit}
 .header-logo{height:48px;width:auto;display:block}
 
 /* Logo variants: show light variant by default, swap to dark variant when .dark-theme is active */
-.header-logo--light{display:block}
-.header-logo--dark{display:none}
-
-/* When dark theme is active on root, show the dark SVG and hide the light one */
-.dark-theme .header-logo--light{display:none}
-.dark-theme .header-logo--dark{display:block}
+.header-logo{display:block}
 
 .nav{margin-left:auto}
 .nav-list{list-style:none;display:flex;align-items:center;gap:36px;margin:0;padding:0}
@@ -197,16 +167,7 @@ a{color:inherit}
 }
   .nav-list>li>a:hover,.sub-trigger:hover{ text-decoration:underline; text-underline-offset:4px; color:var(--primary) }
 /* Theme toggle button in header */
-.theme-toggle{
-  margin-left:12px; display:inline-flex; align-items:center; justify-content:center;
-  height:36px; min-width:36px; padding:6px 8px; border-radius:8px; background:transparent;
-  border:1px solid rgba(16,24,40,0.06); color:var(--text); cursor:pointer; font-size:16px;
-}
-.theme-toggle:focus{outline:none; box-shadow:0 0 0 4px rgba(14,165,164,0.12)}
-
-/* In dark theme reduce the header shadow and adjust toggle border for contrast */
-.dark-theme .site-header.light{ box-shadow: 0 6px 18px rgba(0,0,0,0.45); border-bottom:1px solid rgba(255,255,255,0.04) }
-.dark-theme .theme-toggle{ border-color: rgba(255,255,255,0.06) }
+.theme-toggle{display:none}
 
 /* Dropdown */
 .has-sub{position:relative}
