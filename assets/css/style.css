@@ -27,8 +27,8 @@
   --bg:#f8fafc;           /* page background */
   --surface:#ffffff;      /* card / surface */
   --card:#fbfdff;         /* subtle card background */
-  --text:#0b1220;         /* primary text (near-black) */
-  --muted:#000000;        /* muted text */
+  --text:#000000;         /* primary text (black) */
+  --muted:#475569;        /* muted text (slate) */
   --primary:#0ea5a4;      /* teal */
   --primary-ink:#ffffff;  /* text on primary */
   --accent:#5b21b6;       /* purple accent */
@@ -119,8 +119,22 @@ a{color:inherit}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;border:1px solid #1e2636;text-decoration:none;color:var(--text);transition:transform .15s ease, box-shadow .15s ease}
 .btn:hover{transform:translateY(-1px);box-shadow:var(--btn-hover-shadow)}
 .btn.primary{background:var(--primary);color:var(--primary-ink);border-color:transparent;font-weight:600}
-.btn.secondary{background:#1a2235}
+.btn.secondary{
+  background:#0f1724; /* dark navy */
+  color:#fff; /* white text */
+  border-color:transparent;
+  font-weight:700;
+}
+.btn.secondary:hover{
+  background:#0b1220;
+  box-shadow: var(--btn-hover-shadow);
+  transform: translateY(-1px);
+}
 .btn.ghost{background:transparent; position:relative; z-index:2;}
+
+/* Contact form action buttons: compact and pill-like */
+.actions .btn{padding:10px 18px;border-radius:999px;border-width:0;}
+.actions .btn + .btn{margin-left:12px}
 
 /* Pulse animation for Discover how button */
 /* Pulse only on entrance, not hover */
