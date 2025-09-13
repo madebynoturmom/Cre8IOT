@@ -953,3 +953,46 @@ select{
 .theme-slider .theme-option.active {
   border: 2px solid var(--accent);
 }
+
+/* Global responsive tweaks for ecosystem pages */
+@media (max-width: 960px) {
+  /* Stack hero content and reduce padding */
+  .hero { padding: 48px 18px; }
+  .hero h1 { font-size: clamp(1.6rem, 3.6vw, 2.2rem); }
+  .hero p { font-size: 0.98rem; max-width: 100%; }
+
+  /* Stack what-content grid into single column */
+  .what-content-grid { grid-template-columns: 1fr !important; gap: 20px; }
+  .what-image-container { order: 2; }
+  .what-content-grid .text { order: 1; }
+
+  /* Empower section: adjust text size */
+  .empower-section { padding: 28px 18px; }
+  .empower-text h2 { font-size: 1.5rem; }
+
+  /* Benefits grid: move to two columns */
+  .benefits-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; padding: 0 12px; }
+  .benefit-card { padding: 14px; }
+}
+
+@media (max-width: 600px) {
+  /* Mobile adjustments */
+  .hero { padding: 36px 14px; }
+  .hero h1 { font-size: 1.5rem; }
+  .hero p { font-size: 0.95rem; }
+
+  /* Single column benefits */
+  .benefits-grid { grid-template-columns: 1fr; gap: 12px; }
+
+  /* Improve spacing and readable line lengths */
+  .what-container, .container { padding-left: 14px; padding-right: 14px; }
+
+  /* Ensure illustrations scale and remain visible */
+  .what-image-container img.digital-illustration { width:100%; height:auto; max-height:360px; object-fit:cover; }
+
+  /* CTAs more tappable */
+  .explore-btn, .cta-button { padding: 12px 18px; font-size: 1rem; display:inline-block; }
+
+  /* Footer grid stacks */
+  .footer-grid{grid-template-columns:1fr; gap:18px}
+}
