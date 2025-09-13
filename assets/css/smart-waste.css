@@ -1,0 +1,72 @@
+/* Smart Waste page styles - based on agriculture.css */
+
+.hero {
+  background: linear-gradient(135deg, #2b6b7a, #1f545f);
+  color: #fff;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.empower-section {
+  padding: 48px 0;
+}
+
+.empower-grid .empower-text h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.explore-btn {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 10px 18px;
+  background: rgba(255,255,255,0.95);
+  color: #1f545f;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.explore-btn:hover { background: #fff; filter:brightness(.98); }
+
+.what-container { max-width: 1200px; margin: 28px auto; }
+.what-content-grid { display:grid; grid-template-columns: 1fr 520px; gap:32px; align-items:center; }
+.what-container .text h2 { font-size: 2.2rem; margin-bottom: 12px; }
+.what-container .text p { color: var(--muted); }
+.what-image-container img.digital-illustration { width:100%; height:auto; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.08); }
+
+.benefits-section { padding: 48px 0; }
+.benefits-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:18px; max-width:1100px; margin: 0 auto; }
+.benefit-card { background: #fff; border-radius:10px; padding:18px; display:flex; gap:14px; align-items:flex-start; box-shadow:0 6px 18px rgba(20,40,20,0.04); }
+.benefit-icon img { width:40px; height:auto; max-height:48px; object-fit:contain; display:block; }
+.benefit-title { margin:0 0 6px; font-size:1.1rem; }
+.benefit-description { margin:0; color:var(--muted); font-size:0.98rem; line-height:1.5 }
+
+.cta-section { background: linear-gradient(135deg,#f6fff6,#eaf8ea); padding:50px 0; text-align:center; }
+.cta-section .cta-button { display:inline-block; padding:12px 20px; background:#1f545f; color:#fff; border-radius:8px; text-decoration:none; font-weight:700 }
+
+@media (max-width:900px){
+  .what-content-grid { grid-template-columns:1fr; }
+  .benefits-grid { grid-template-columns: repeat(2,1fr); }
+}
+
+@media (max-width:600px){
+  .benefits-grid { grid-template-columns: 1fr; }
+  .hero { padding: 50px 18px; }
+  .hero h1 { font-size:2rem }
+}
+
+/* small utility spacing to mirror site */
+.container { padding-left:18px; padding-right:18px; }
