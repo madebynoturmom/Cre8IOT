@@ -1,0 +1,141 @@
+/* Agentic AI Page Styles */
+.empower-section {
+  background: linear-gradient(90deg, #f0f7fa 0%, #e6eafc 100%);
+  padding: 60px 0 40px 0;
+}
+.empower-section .empower-text h2 {
+  color: #1e293b;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+.empower-section .empower-text p {
+  color: #334155;
+  font-size: 1.15rem;
+  margin-bottom: 24px;
+}
+.empower-section .explore-btn {
+  background: #0ea5e9;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.empower-section .explore-btn:hover {
+  background: #0369a1;
+}
+
+.what-is-agentic-section {
+  background: #fff;
+  padding: 60px 0 40px 0;
+}
+.what-content-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+}
+.what-content-grid .text {
+  flex: 1 1 340px;
+}
+.what-content-grid .digital-illustration {
+  max-width: 340px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.key-components-list {
+  margin-top: 18px;
+  padding-left: 20px;
+  color: #0ea5e9;
+  font-weight: 500;
+}
+
+.benefits-section {
+  background: #f8fafc;
+  padding: 60px 0 40px 0;
+}
+.benefits-section h2 {
+  text-align: center;
+  margin-bottom: 36px;
+  color: #1e293b;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+.benefit-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  padding: 28px 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  transition: box-shadow 0.2s;
+}
+.benefit-card:hover {
+  box-shadow: 0 4px 18px rgba(14,165,233,0.10);
+}
+.benefit-icon img {
+  width: 44px;
+  height: 44px;
+}
+.benefit-title {
+  color: #0ea5e9;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.benefit-description {
+  color: #334155;
+  font-size: 1rem;
+}
+
+.cta-section {
+  background: linear-gradient(90deg, #e0f2fe 0%, #f1f5f9 100%);
+  padding: 60px 0 40px 0;
+  text-align: center;
+}
+.cta-section h2 {
+  color: #1e293b;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.cta-section p {
+  color: #334155;
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+}
+.cta-section .cta-button {
+  background: #0ea5e9;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 14px 36px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.cta-section .cta-button:hover {
+  background: #0369a1;
+}
+
+@media (max-width: 900px) {
+  .what-content-grid {
+    flex-direction: column;
+    gap: 28px;
+  }
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+}
