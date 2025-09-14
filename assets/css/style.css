@@ -1008,3 +1008,23 @@ select{
   /* Footer grid stacks */
   .footer-grid{grid-template-columns:1fr; gap:18px}
 }
+
+/* Final overrides: ensure hero sits flush under sticky header and remove accidental gaps */
+/* Placed at the end so it wins over earlier rules */
+@media (max-width: 960px) {
+  /* Remove any external margins that could create a gap */
+  .hero-slider, .hero, .hero-slides, .hero-slide { margin-top: 0 !important; padding-top: 0 !important; }
+
+  /* Hero should exactly fill viewport under the sticky header (header height = 72px) */
+  .hero-slider, .hero-slides, .hero-slide, .hero-slide .slide-bg { min-height: calc(100vh - 72px) !important; }
+
+  /* Place content at the top and remove heading top margins that can collapse */
+  .hero-slide { align-items: flex-start !important; }
+  .slide-content { padding-top: 8px !important; padding-bottom: 20px !important; }
+  .slide-content h1, .slide-content .lead { margin-top: 0 !important; }
+}
+
+/* Narrow phones: be strict about zero gap */
+@media (max-width: 420px){
+  .slide-content{padding-top:6px !important}
+}
