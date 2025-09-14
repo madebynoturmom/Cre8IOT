@@ -1028,3 +1028,19 @@ select{
 @media (max-width: 420px){
   .slide-content{padding-top:6px !important}
 }
+
+/* Remove all padding/margins around hero slides so they touch edges */
+/* Scoped to small and medium screens to avoid changing desktop layout */
+@media (max-width: 960px) {
+  .hero, .hero-slider, .hero-slides, .hero-slide, .slide-content {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+
+  /* If there's a .container inside the hero, remove its horizontal padding */
+  .hero .container, .hero .container * { padding-left: 0 !important; padding-right: 0 !important; }
+
+  /* Ensure backgrounds still cover the full area */
+  .hero-slider, .hero-slides, .hero-slide, .hero-slide .slide-bg { min-height: calc(100vh - 72px) !important; width:100% !important; }
+}
