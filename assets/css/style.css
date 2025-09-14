@@ -334,6 +334,16 @@ body.mobile-nav-open .hero-progress{
 .slide-content{position:relative; z-index:20; padding:96px 20px; max-width:720px} /* content above slides */
 .slide-content .lead{color:var(--muted)}
 
+/* Mobile: remove large top padding so hero touches the sticky header and fills the viewport */
+@media (max-width:960px){
+  /* header-inner height is 72px; subtract that from 100vh so hero sits flush under header */
+  .hero-slider{min-height:calc(100vh - 72px);}
+  .hero-slides, .hero-slide{min-height:calc(100vh - 72px)}
+  .slide-content{padding:20px 16px 28px; max-width:640px}
+  /* ensure slide-bg covers new height without extra gaps */
+  .hero-slide .slide-bg{min-height:calc(100vh - 72px)}
+}
+
 /* Desktop: align hero content to a consistent left gutter and improve vertical spacing */
 @media (min-width:1100px){
   .hero-slider{min-height: 855px;}
