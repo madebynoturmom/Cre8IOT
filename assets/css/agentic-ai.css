@@ -1,8 +1,90 @@
-/* Agentic AI Page Styles */
-.empower-section {
-  background: linear-gradient(90deg, #f0f7fa 0%, #e6eafc 100%);
-  padding: 60px 0 40px 0;
+/* Agentic AI page - design skeleton (based on SME Digitalization styles)
+   This file provides the layout and responsive rules used by the Agentic AI page.
+*/
+
+/* --- Helpers --- */
+:root {
+  --primary: #0ea5e9;
+  --muted: #475569;
+  --text: #0f172a;
+  --card: #ffffff;
+  --bg2: #f1f5f9;
+  --shadow: 0 8px 20px rgba(2,6,23,0.06);
+  --img-hover-shadow: 0 8px 20px rgba(14,30,37,0.08);
 }
+
+div[data-include] { display:block; }
+
+/* --- Hero / Intro Section --- */
+.hero {
+  background: linear-gradient(135deg, hsl(204, 100%, 44%), #008d6e);
+  color: #fff;
+  padding: 80px 0;
+  text-align: center;
+}
+.hero h1 { font-size: 3rem; margin-bottom: 30px; }
+.hero p { font-size: 1.4rem; line-height: 1.8; max-width: 900px; margin: 0 auto; }
+
+/* --- Details / Features --- */
+.details { background: #f9f9f9; padding: 60px 0; }
+.details h2 { text-align: center; font-size: 2.5rem; margin-bottom: 30px; }
+.details p { text-align: center; font-size: 1.3rem; margin-bottom: 40px; }
+.features-grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
+.feature { background: var(--card); border: 1px solid #e6e9ef; border-radius: 8px; padding: 30px; width: 350px; box-shadow: 0 4px 6px rgba(0,0,0,0.06); text-align: center; }
+.feature h3 { font-size: 1.8rem; margin-bottom: 15px; }
+.feature p { font-size: 1.2rem; line-height: 1.6; }
+
+/* Explore More button */
+.explore-btn { display:inline-block; margin-top:18px; padding:10px 18px; border-radius:10px; background:transparent; border:1px solid var(--primary); color:var(--primary); text-decoration:none; font-weight:700; transition: background 180ms ease, color 180ms ease, transform 160ms ease; }
+.explore-btn:hover{ background:var(--primary); color:#fff; transform:translateY(-2px) }
+
+/* --- What / Two-column layout --- */
+.what-container { max-width: 1200px; margin: 0 auto; padding-left: 1.5rem; padding-right: 1.5rem; box-sizing: border-box; }
+.what-content-grid { display: grid; grid-template-columns: 1fr 520px; gap: 3rem; align-items: center; }
+.what-content-grid > div { min-width: 0; }
+.what-headline { color: var(--primary); font-weight: 600; }
+.what-description { font-size: 1.05rem; color: var(--muted); }
+.key-components-list { margin-top: 1rem; padding-left: 1rem; }
+.component-item { display: flex; align-items: flex-start; gap: 0.75rem; color: var(--muted); }
+.component-item .bullet { color: var(--primary); display:inline-flex; align-items:center; justify-content:center; width:12px; height:12px; font-size:1rem; margin-top:6px; }
+.what-image-container { display:flex; justify-content:flex-end; }
+.digital-illustration { border-radius: 14px; box-shadow: var(--img-hover-shadow); width:100%; max-width:520px; display:block; }
+
+/* --- Benefits cards --- */
+.benefits-container { max-width:1200px; margin:0 auto; padding-left:1.5rem; padding-right:1.5rem; box-sizing: border-box; }
+.benefits-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.benefit-card { background: var(--card); padding: 2rem; border-radius: 14px; box-shadow: var(--shadow); display:flex; gap:1.25rem; align-items:flex-start; transition: transform 220ms ease, box-shadow 220ms ease; }
+.benefit-card:hover { transform: translateY(-6px); box-shadow: 0 22px 40px rgba(2,6,23,0.08); }
+.benefit-icon { width:64px; height:64px; border-radius:9999px; background:var(--bg2); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.benefit-icon img { width:36px; height:36px; object-fit:contain; display:block; }
+.benefit-text { display:flex; flex-direction:column; }
+.benefit-title { font-size:1.15rem; margin:0 0 .6rem 0; color:var(--text); font-weight:800; line-height:1.05; }
+.benefit-description { margin:0; color:var(--muted); max-width:36ch; }
+
+/* --- CTA --- */
+.cta-section { background: linear-gradient(90deg, #e0f2fe 0%, #f1f5f9 100%); padding: 60px 0 40px 0; text-align: center; }
+.cta-section h2 { color: var(--text); font-size: 2rem; font-weight:700; margin-bottom:16px; }
+.cta-section p { color: var(--muted); font-size:1.1rem; margin-bottom:24px; }
+.cta-button { background: var(--primary); color:#fff; border:none; border-radius:6px; padding:12px 28px; font-weight:700; text-decoration:none; }
+
+/* --- Responsive adjustments --- */
+@media (max-width: 900px) {
+  .what-content-grid { grid-template-columns: 1fr; }
+  .what-image-container { justify-content:center; }
+  .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+  .benefit-card { padding:1.25rem; }
+  .what-container, .benefits-container { padding-left: 1rem; padding-right: 1rem; }
+}
+
+@media (max-width: 480px) {
+  .benefits-grid { grid-template-columns: 1fr; }
+  .what-headline { font-size:1.5rem; }
+  .what-description { font-size:1rem; }
+  .hero { padding: 40px 12px; }
+  .hero h1 { font-size: 1.8rem; }
+  .hero p { font-size: 1rem; }
+}
+
 .empower-section .container,
 .what-is-agentic-section .what-container,
 .benefits-section .container,
@@ -39,20 +121,54 @@
   background: #0369a1;
 }
 
-.what-is-agentic-section {
-  background: #fff;
-  padding: 60px 0 40px 0;
+/* Styling for Agentic AI (copied skeleton from SME Digitalization) */
+.hero {
+  background: linear-gradient(135deg, hsl(204, 100%, 44%), #008d6e);
+  color: #fff;
+  padding: 80px 0;
+  text-align: center;
 }
 
+.hero h1 { font-size: 3rem; margin-bottom: 30px; }
+.hero p { font-size: 1.4rem; line-height: 1.8; }
+
 .what-content-grid {
+.details { background: #f9f9f9; padding: 60px 0; }
+.details h2 { text-align: center; font-size: 2.5rem; margin-bottom: 30px; }
+.details p { text-align: center; font-size: 1.3rem; margin-bottom: 40px; }
   display: flex;
   flex-wrap: wrap;
+.features-grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
+.feature { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 30px; width: 350px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; }
+.feature h3 { font-size: 1.8rem; margin-bottom: 15px; }
+.feature p { font-size: 1.2rem; line-height: 1.6; }
   gap: 40px;
   align-items: center;
+.what-container { max-width: 1200px; margin: 0 auto; padding-left: 1.5rem; padding-right: 1.5rem; }
+.what-content-grid { display: grid; grid-template-columns: 1fr 520px; gap: 3rem; align-items: center; }
+.what-content-grid > div { min-width: 0; }
+.what-headline { color: #0ea5e9; font-weight: 600; }
+.what-description { font-size: 1.05rem; color: #475569; }
+.key-components-list { margin-top: 1rem; }
+.component-item { display: flex; align-items: flex-start; gap: 0.75rem; color: #475569; }
+.component-item .bullet { color: #0ea5e9; display:inline-flex; align-items:center; justify-content:center; width:12px; height:12px; font-size:1rem; margin-top:6px; }
+.what-image-container { display:flex; justify-content:flex-end; }
+.digital-illustration { border-radius: 14px; box-shadow: 0 8px 20px rgba(14,30,37,0.08); width:100%; max-width:520px; }
 }
 .what-content-grid .text {
+.benefits-container { max-width:1200px; margin:0 auto; padding-left:1.5rem; padding-right:1.5rem; }
+.benefits-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.benefit-card { background: #fff; padding: 2rem; border-radius: 14px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); display:flex; gap:1.25rem; align-items:flex-start; }
+.benefit-icon { width:64px; height:64px; border-radius:9999px; background:#f1f5f9; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.icon-symbol { font-size:1.6rem; }
+.benefit-text { display:flex; flex-direction:column; }
+.benefit-title { font-size:1.15rem; margin:0 0 .6rem 0; color:#0f172a; font-weight:800; line-height:1.05; }
+.benefit-description { margin:0; color:#475569; max-width:36ch; }
+.benefit-icon img{width:36px;height:36px;object-fit:contain;display:block}
   flex: 1 1 340px;
   min-width: 220px;
+.explore-btn { display:inline-block; margin-top:18px; padding:10px 18px; border-radius:10px; background:transparent; border:1px solid #0ea5e9; color:#0ea5e9; text-decoration:none; font-weight:700; transition: background 180ms ease, color 180ms ease, transform 160ms ease; }
+.explore-btn:hover{ background:#0ea5e9; color:#fff; transform:translateY(-2px) }
 }
 .what-content-grid .digital-illustration {
   max-width: 340px;
