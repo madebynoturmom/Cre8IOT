@@ -33,6 +33,7 @@
   background: #fff;
   padding: 60px 0 40px 0;
 }
+
 .what-content-grid {
   display: flex;
   flex-wrap: wrap;
@@ -41,18 +42,55 @@
 }
 .what-content-grid .text {
   flex: 1 1 340px;
+  min-width: 220px;
 }
 .what-content-grid .digital-illustration {
   max-width: 340px;
   width: 100%;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .key-components-list {
   margin-top: 18px;
   padding-left: 20px;
   color: #0ea5e9;
   font-weight: 500;
+  font-size: 1.15rem;
+}
+.key-components-list li {
+  margin-bottom: 8px;
+}
+.what-content-grid h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 900px) {
+  .what-content-grid {
+    flex-direction: column;
+    gap: 28px;
+    align-items: stretch;
+    text-align: left;
+  }
+  .what-content-grid .text {
+    width: 100%;
+    min-width: 0;
+    text-align: left;
+  }
+  .what-content-grid .digital-illustration {
+    max-width: 100%;
+    margin: 0 auto 0 auto;
+  }
+  .key-components-list {
+    font-size: 1.05rem;
+    padding-left: 16px;
+  }
+  .what-content-grid h2 {
+    font-size: 1.4rem;
+  }
 }
 
 .benefits-section {
