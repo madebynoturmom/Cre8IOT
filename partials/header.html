@@ -43,9 +43,10 @@
           <li><a href="/Cre8IOT/our-purpose.html">Our Purpose</a></li>
           <li class="has-sub">
             <button
-              class="sub-trigger"
+              class="sub-trigger nav-link-style"
               aria-expanded="false"
               aria-haspopup="true"
+              type="button"
             >
               Our Services <span class="chev" aria-hidden="true">▾</span>
             </button>
@@ -81,6 +82,45 @@
               </li>
             </ul>
           </li>
+</header>
+<style>
+  /* Ensure Our Services button matches nav link style */
+  .nav-link-style {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    text-transform: inherit;
+    transition: color 0.2s;
+    outline: none;
+    box-shadow: none;
+    display: inline;
+  }
+  .nav-link-style:focus,
+  .nav-link-style:hover {
+    color: #0ea5e9;
+    text-decoration: underline;
+  }
+  .nav-list > li > a,
+  .nav-list > li > .nav-link-style {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #111;
+    text-decoration: none;
+    padding: 0 0.5em;
+    background: none;
+    border: none;
+    letter-spacing: 0.5px;
+    text-transform: inherit;
+    transition: color 0.2s;
+  }
+</style>
           <li><a href="./contact.html">Contact Us</a></li>
         </ul>
       </div>
