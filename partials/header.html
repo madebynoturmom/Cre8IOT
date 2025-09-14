@@ -39,8 +39,9 @@
         </div>
         <ul class="nav-list">
           <li><a href="/Cre8IOT/index.html">Home</a></li>
-          <li><a href="/Cre8IOT/smart-city.html">Smart City</a></li>
-          <li><a href="/Cre8IOT/agentic-ai.html">Agentic Ai</a></li>
+          <!-- Smart City and Agentic Ai as top-level for mobile, hidden on desktop -->
+          <li class="mobile-only"><a href="/Cre8IOT/smart-city.html">Smart City</a></li>
+          <li class="mobile-only"><a href="/Cre8IOT/agentic-ai.html">Agentic Ai</a></li>
           <li class="has-sub">
             <button
               class="sub-trigger nav-link-style"
@@ -51,6 +52,8 @@
               Our Services <span class="chev" aria-hidden="true">▾</span>
             </button>
             <ul class="submenu">
+              <li class="desktop-only"><a href="/Cre8IOT/smart-city.html">Smart City</a></li>
+              <li class="desktop-only"><a href="/Cre8IOT/agentic-ai.html">Agentic Ai</a></li>
               <li>
                 <a href="/Cre8IOT/ecosystems/sme-digitalization.html"
                   >SME Digitalization</a
@@ -128,3 +131,10 @@
     transition: color 0.2s;
   }
 </style>
+  /* Hide/show nav items for mobile/desktop */
+  .mobile-only { display: none !important; }
+  .desktop-only { display: list-item !important; }
+  @media (max-width: 900px) {
+    .mobile-only { display: list-item !important; }
+    .desktop-only { display: none !important; }
+  }
