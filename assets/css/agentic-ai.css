@@ -3,6 +3,16 @@
   background: linear-gradient(90deg, #f0f7fa 0%, #e6eafc 100%);
   padding: 60px 0 40px 0;
 }
+.empower-section .container,
+.what-is-agentic-section .what-container,
+.benefits-section .container,
+.cta-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+  box-sizing: border-box;
+}
 .empower-section .empower-text h2 {
   color: #1e293b;
   font-size: 2.2rem;
@@ -118,13 +128,25 @@
   align-items: flex-start;
   gap: 18px;
   transition: box-shadow 0.2s;
+  min-width: 0;
 }
 .benefit-card:hover {
   box-shadow: 0 4px 18px rgba(14,165,233,0.10);
 }
+.benefit-icon {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-right: 8px;
+}
 .benefit-icon img {
   width: 44px;
   height: 44px;
+  object-fit: contain;
+  display: block;
 }
 .benefit-title {
   color: #0ea5e9;
@@ -172,8 +194,29 @@
   .what-content-grid {
     flex-direction: column;
     gap: 28px;
+    padding-left: 0;
+    padding-right: 0;
   }
   .benefits-grid {
     grid-template-columns: 1fr;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .empower-section .container,
+  .what-is-agentic-section .what-container,
+  .benefits-section .container,
+  .cta-section .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .benefit-card {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 22px 10px;
+  }
+  .benefit-icon {
+    width: 44px;
+    height: 44px;
+    margin-right: 10px;
   }
 }
