@@ -1061,7 +1061,7 @@ select{
     max-width: 90%; /* Limit width for better readability */
     margin: auto 0; /* Center content vertically */
     text-align: left;
-    padding-top: 40px; /* Add top padding for spacing */
+    padding: 20px; /* Add padding for spacing */
   }
 
   .hero-slide .slide-bg {
@@ -1070,12 +1070,12 @@ select{
   }
 
   .hero-slide h1 {
-    font-size: 1.8rem; /* Adjust font size for mobile */
+    font-size: 2rem; /* Adjust font size for better visibility */
     line-height: 1.4; /* Improve readability */
   }
 
   .hero-slide p {
-    font-size: 1rem; /* Adjust paragraph font size */
+    font-size: 1.2rem; /* Adjust paragraph font size */
     line-height: 1.6; /* Improve readability */
     margin-bottom: 20px; /* Add spacing below text */
   }
