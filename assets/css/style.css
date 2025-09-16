@@ -39,10 +39,10 @@
   --secondary: #7c3aed; /* purple */
   --accent: #22d3ee; /* cyan */
 
-  /* text */
-  --text: #ffffff; /* dark text */
-  --text-dim: #ffffff;
-  --text-muted: #ffffff;
+  /* Text color */
+  --text: #000000; /* Black text */
+  --text-dim: #333333; /* Dark gray for dim text */
+  --text-muted: #666666; /* Medium gray for muted text */
 
   /* borders / shadows */
   --border: rgba(0,0,0,0.08);
