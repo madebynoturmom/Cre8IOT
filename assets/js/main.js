@@ -214,3 +214,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
+// === Featured Solutions Tab Switcher ===
+document.addEventListener('DOMContentLoaded', function() {
+  const tabBtns = document.querySelectorAll('.featured-tab-btn');
+  const cards = {
+    parking: document.getElementById('solution-parking'),
+    traffic: document.getElementById('solution-traffic'),
+    "air-quality": document.getElementById('solution-air-quality'),
+    energy: document.getElementById('solution-energy')
+  };
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Remove active from all
+      tabBtns.forEach(b => b.classList.remove('active'));
+      // Hide all cards
+      Object.values(cards).forEach(card => card.style.display = 'none');
+      // Activate this
+      btn.classList.add('active');
+      const key = btn.getAttribute('data-solution');
+      if (cards[key]) {
+        cards[key].style.display = '';
+      }
+    });
+  });
+});

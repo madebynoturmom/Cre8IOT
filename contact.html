@@ -21,6 +21,156 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/Cre8IOT/assets/icons/cre8iotsvg-new.ico">
     <link rel="icon" href="/Cre8IOT/assets/icons/cre8iot-logo-crown.svg" type="image/svg+xml"> <!-- optional modern browsers -->
     <link rel="shortcut icon" href="/Cre8IOT/assets/icons/cre8iotsvg-new.ico"> <!-- fallback for older browsers -->
+
+    <!-- Updated CSS for modern color scheme -->
+    <style>
+      body {
+        background-color: #f9f9f9;
+        color: #333;
+      }
+
+      .page-hero {
+        background-color: #0078d7;
+        color: #fff;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .page-hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        color: #000;
+      }
+
+      .page-hero p {
+        font-size: 1.2rem;
+        color: #000;
+      }
+
+      .contact-section {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+      }
+
+      .contact-grid .card {
+        background-color: #f1f1f1;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1.5rem;
+      }
+
+      .btn {
+        display: inline-block;
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      .btn.primary {
+        background-color: #0078d7;
+        color: #fff;
+        border: none;
+      }
+
+      .btn.primary:hover {
+        background-color: #005fa3;
+      }
+
+      .btn.secondary {
+        background-color: #f1f1f1;
+        color: #0078d7;
+        border: 1px solid #0078d7;
+      }
+
+      .btn.secondary:hover {
+        background-color: #e1e1e1;
+      }
+
+      .btn.ghost {
+        background-color: transparent;
+        color: #0078d7;
+        border: none;
+      }
+
+      .btn.ghost:hover {
+        text-decoration: underline;
+      }
+
+      .offices h2 {
+        color: #0078d7;
+      }
+
+      .offices .card {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1rem;
+      }
+
+      /* Added visual enhancements */
+      .card {
+        transition: box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .page-hero {
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Enhanced responsiveness with media queries */
+      @media (max-width: 768px) {
+        .contact-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+
+        .contact-grid .card {
+          width: 100%;
+        }
+
+        .page-hero {
+          padding: 1.5rem;
+        }
+
+        .page-hero h1 {
+          font-size: 2rem;
+        }
+
+        .page-hero p {
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .actions {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .btn {
+          width: 100%;
+        }
+      }
+    </style>
   </head>
   <body>
     <div data-include="/Cre8IOT/partials/header.html"></div>
@@ -38,7 +188,7 @@
     <!-- Contact -->
     <section class="contact-section container">
       <div class="contact-grid">
-        <!-- Contact Form -->
+        <!-- Contact Form Section First -->
         <form class="card" id="contact-form" novalidate>
           <h2>Send a Message</h2>
 
@@ -111,9 +261,9 @@
           <p class="form-status" role="status" aria-live="polite"></p>
         </form>
 
-        <!-- Offices & Map -->
+        <!-- Offices Section Second -->
         <div class="offices">
-          <h2>Offices</h2>
+          <h2>Our Offices</h2>
 
           <div class="card" id="my">
             <h3>Malaysia (HQ)</h3>

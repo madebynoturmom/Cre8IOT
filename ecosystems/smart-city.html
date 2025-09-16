@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="/Cre8IOT/assets/css/style.css" />
 		<link rel="stylesheet" href="/Cre8IOT/assets/css/sme-digitalization.css" />
 		<link rel="stylesheet" href="/Cre8IOT/assets/css/animations.css" />
+		<link rel="stylesheet" href="/Cre8IOT/assets/css/smart-city.css" />
 
 		<!-- Favicons: prefer SVG/PNG, fall back to ICO -->
 		<link rel="icon" type="image/png" sizes="32x32" href="/Cre8IOT/assets/icons/cre8iotsvg-new.ico">
@@ -18,38 +19,109 @@
 		<!-- JS -->
 		<script src="/Cre8IOT/assets/js/partials.js" defer></script>
 		<script src="/Cre8IOT/assets/js/main.js" defer></script>
+
+		<style>
+			.smartcity-hero-img {
+				width: 100%;
+				height: auto;
+				max-width: 800px; /* Increased maximum width for larger hero image */
+				margin: 0 auto; /* Center the image */
+			}
+		</style>
 	</head>
 
 	<body class="gjs-t-body cls-gkjx3d">
 		<div data-include="/Cre8IOT/partials/header.html"></div>
 
-		<section id="empower" class="empower-section">
-			<div class="container">
-				<div class="empower-grid">
-					<div class="empower-text">
-						<h2>Empowering Cities Through Digitalization</h2>
-						<p>We help cities and municipalities adopt smart digital solutions — from IoT sensors to urban dashboards — to increase efficiency, sustainability, and quality of life. Our approach focuses on scalable, citizen-centric outcomes.</p>
-						<a href="../index.html" class="explore-btn">Explore More</a>
-					</div>
+
+		<section class="smartcity-hero">
+			<div class="smartcity-hero-content">
+				<div class="smartcity-hero-text">
+					<h1 class="smartcity-hero-title">Smart City Digital Transformation</h1>
+					<p class="smartcity-hero-desc">
+						Unlock the future of urban living with intelligent infrastructure, real-time data, and citizen-centric solutions. Empower your city to be more efficient, sustainable, and connected.
+					</p>
+					<a href="/Cre8IOT/contact.html" class="smartcity-hero-cta">Get Started</a>
+				</div>
+				<div class="smartcity-hero-imgwrap">
+					<img src="/Cre8IOT/assets/img/smart-city/hero-img.jpg" alt="Smart City Dashboard Illustration" class="smartcity-hero-img" />
 				</div>
 			</div>
 		</section>
 
-		<section class="what-is-sme-section">
-			<div class="what-container">
-				<div class="what-content-grid">
-					<div class="text">
-						<h2>What is a Smart City?</h2>
-						<p>A Smart City integrates digital technology and data-driven solutions into urban infrastructure, transforming how cities operate and deliver services to citizens.</p>
-						<ul class="key-components-list">
-							<li>IoT-enabled Infrastructure</li>
-							<li>Smart Mobility & Transport</li>
-							<li>Urban Data Analytics</li>
-							<li>Citizen Engagement Platforms</li>
-						</ul>
+
+		<section class="featured-solutions-section">
+			<h2 class="featured-solutions-title">Featured Solutions</h2>
+			<div class="featured-solutions-tabs">
+				<button class="featured-tab-btn active" data-solution="parking">UnarcEdge AI Camera Parking Bay Availability</button>
+				<button class="featured-tab-btn" data-solution="traffic">Unarvu Edge AI Camera Traffic Management</button>
+				<button class="featured-tab-btn" data-solution="air-quality">Unarvu Air Quality Monitoring System</button>
+				<button class="featured-tab-btn" data-solution="energy">Unarvu Energy Usage Monitoring</button>
+			</div>
+			<div class="featured-solutions-cards">
+				<!-- Edge AI Camera Parking Bay Availability -->
+				<div class="featured-card" id="solution-parking">
+					<div class="featured-card-imgwrap">
+						<img src="/Cre8IOT/assets/img/smart-city/Parking_Bay_Camera.png" alt="Parking Bay Availability" class="featured-card-img" />
 					</div>
-					<div class="what-image-container">
-						<img src="/Cre8IOT/assets/img/iot-dashboard.png" alt="Smart City dashboard" class="digital-illustration" />
+					<div class="featured-card-content">
+						<h3>Edge AI Camera Parking Bay Availability</h3>
+						<p>Unarvu's outdoor-ready Edge AI Camera monitors parking bay availability in real-time for public and private sectors. It uses on-device processing to detect occupancy, read license plates, and identify anomalies, ensuring low latency, reduced bandwidth, and reliable operation without constant cloud connectivity.</p>
+						<ul class="featured-card-list" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; list-style: none; padding: 0;">
+							<li style="display: flex; align-items: center;"><img src="/Cre8IOT/assets/img/smart-city/icon/supply-chain.png" alt="Dashboard Icon" style="width: 24px; margin-right: 10px;"> Support Any City Platform Dashboard</li>
+							<li style="display: flex; align-items: center;"><img src="/Cre8IOT/assets/img/smart-city/icon/vision.png" alt="Vision Icon" style="width: 24px; margin-right: 10px;"> Edge A.I Computer Vision Detection</li>
+							<li style="display: flex; align-items: center;"><img src="/Cre8IOT/assets/img/smart-city/icon/warranty.png" alt="Warranty Icon" style="width: 24px; margin-right: 10px;"> 36 month Connectivity & Performance Warranty</li>
+							<li style="display: flex; align-items: center;"><img src="/Cre8IOT/assets/img/smart-city/icon/infra.png" alt="Infra Icon" style="width: 24px; margin-right: 10px;"> Scalable, Robust and Sustainable Infra</li>
+						</ul>
+						<button class="featured-card-btn">Contact Us to Learn More</button>
+					</div>
+				</div>
+				<!-- Edge AI Camera Traffic Management -->
+				<div class="featured-card" id="solution-traffic" style="display:none;">
+					<div class="featured-card-imgwrap">
+						<img src="/Cre8IOT/assets/img/smart-city/Traffic_Camera.png" alt="Traffic Management" class="featured-card-img" />
+					</div>
+					<div class="featured-card-content">
+						<h3>Edge AI Camera Traffic Management</h3>
+						<p>This outdoor-ready Edge AI camera decodes urban mobility in real time for smart city teams. It uses on-device computer vision to classify vehicles like cars, buses, and trucks directly at the source, eliminating cloud latency.</p>
+						<ul class="featured-card-list" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; list-style: none; padding: 0;">
+							<li style="display: flex; align-items: center;"><img src="/Cre8IOT/assets/img/smart-city/icon/real-time.png" alt="Vehicle Icon" style="width: 24px; margin-right: 10px;"> Edge AI processing for real-time vehicle classification</li>
+							<li style="display: flex; align-items: center;"><img src="/Cre8IOT/assets/img/smart-city/icon/seamless.png" alt="Dashboard Icon" style="width: 24px; margin-right: 10px;"> Seamless integration with municipal dashboards</li>
+							<li style="display: flex; align-items: center;"><img src="/Cre8IOT/assets/img/smart-city/icon/infra.png" alt="Training Icon" style="width: 24px; margin-right: 10px;"> No-cost computer vision training and inference creation</li>
+							<li style="display: flex; align-items: center;"><img src="/Cre8IOT/assets/img/smart-city/icon/warranty.png" alt="Warranty Icon" style="width: 24px; margin-right: 10px;"> 36-month performance warranty for long-term reliability</li>
+						</ul>
+						<button class="featured-card-btn">Contact Us to Learn More</button>
+					</div>
+				</div>
+				<!-- Air Quality Monitoring System -->
+				<div class="featured-card" id="solution-air-quality" style="display:none;">
+					<div class="featured-card-imgwrap">
+						<img src="/Cre8IOT/assets/img/smart-city/AirQuality.png" alt="Air Quality Monitoring" class="featured-card-img" />
+					</div>
+					<div class="featured-card-content">
+						<h3>Unarvu City Air Quality Ecosystem</h3>
+						<p>Modular, edge-powered IoT solution for city-wide air monitoring. It tracks key pollutants in real time, syncs with cloud dashboards, and supports ESG reporting. Scalable, weatherproof, and backed by a 36-month warranty, it empowers smarter planning and healthier, more resilient urban environments.</p>
+						<ul class="featured-card-list" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; list-style: none; padding: 0;">
+							<li style="display: flex; align-items: center;"><img src="/Cre8IOT/assets/img/smart-city/icon/real-time.png" alt="Monitoring Icon" style="width: 24px; margin-right: 10px;"> Real-time monitoring of critical air quality parameters</li>
+							<li style="display: flex; align-items: center;"><img src="/Cre8IOT/assets/img/smart-city/icon/warranty.png" alt="ESG Icon" style="width: 24px; margin-right: 10px;"> Supports ESG reporting and environmental compliance</li>
+							<li style="display: flex; align-items: center;"><img src="/Cre8IOT/assets/img/smart-city/icon/infra.png" alt="Dashboard Icon" style="width: 24px; margin-right: 10px;"> Seamless integration with municipal dashboards</li>
+						</ul>
+						<button class="featured-card-btn">Contact Us to Learn More</button>
+					</div>
+				</div>
+				<!-- Unarvu Energy Usage Monitoring -->
+				<div class="featured-card" id="solution-energy" style="display:none;">
+					<div class="featured-card-imgwrap">
+						<img src="/Cre8IOT/assets/img/smart-city/Smart City.png" alt="Energy Usage Monitoring" class="featured-card-img" />
+					</div>
+					<div class="featured-card-content">
+						<h3>Unarvu Energy Usage Ecosystem</h3>
+						<p>Unarvu Energy is a modular, edge-powered monitoring ecosystem for cities and buildings. It provides real-time, circuit-level insights for electricity, gas, and water to drive efficiency, sustainability compliance, and smart transformation for planners and facility managers.</p>
+						<ul class="featured-card-list" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; list-style: none; padding: 0;">
+							<li style="display: flex; align-items: center;"><img src="/Cre8IOT/assets/img/smart-city/icon/monitor.png" alt="Gas Icon" style="width: 24px; margin-right: 10px;"> Monitoring down to sub-circuit/system level</li>
+							<li style="display: flex; align-items: center;"><img src="/Cre8IOT/assets/img/smart-city/icon/regulatory-compliance.png" alt="Water Icon" style="width: 24px; margin-right: 10px;"> Supports GBI, LEED, ESG and national energy compliance</li>
+						</ul>
+						<button class="featured-card-btn">Contact Us to Learn More</button>
 					</div>
 				</div>
 			</div>
@@ -101,15 +173,7 @@
 				</div>
 			</div>
 		</section>
-
-		<section id="contact" class="cta-section">
-			<div class="container">
-				<h2>Ready to Build a Smarter City?</h2>
-				<p>Take the first step towards urban digital transformation today.</p>
-				<a class="cta-button" href="../contact.html">Get Started Today</a>
-			</div>
-		</section>
-
+		
 		<!-- footer partial -->
 		<div data-include="/Cre8IOT/partials/footer.html"></div>
 
