@@ -15,63 +15,44 @@
   stroke: #fff;
   opacity: 0.18;
 }
-.hero-circle-progress .circle {
-  stroke: #fff;
-  stroke-linecap: round;
-  transition: stroke-dashoffset .3s ease;
+.hero-circle-progress .circle-fg {
+  stroke: var(--primary, #2dd4bf);
+  transition: stroke-dashoffset 0.2s linear;
 }
-.hero-circle-progress .circle-shadow {
-  stroke: rgba(255,255,255,0.8); /* subtle glow */
-  filter: blur(2px);
-  opacity: 0.55;
-}
+/* =========================
+   THEME & BASE
+   ========================= */
+:root{
+  /* Light theme (default) */
+  --bg:#f8fafc;           /* page background */
+  --surface:#ffffff;      /* card / surface */
+  --card:#fbfdff;         /* subtle card background */
+  --text:#000000;         /* primary text (black) */
+  --muted:#475569;        /* muted text (slate) */
+  --primary:#0ea5a4;      /* teal */
+  --primary-ink:#ffffff;  /* text on primary */
+  --accent:#5b21b6;       /* purple accent */
+  --ring:#cbd5e1;
 
-/* Basic focus ring utility */
-:where(a,button,[role="button"],input,select,textarea):focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 2px;
-  border-radius: 8px;
-}
+  /* Layout */
+  --max:1152px;
+  --radius:12px;
+  --gap:24px;
+  --shadow:0 8px 20px rgba(16,24,40,0.06);
 
-:root {
-  /* core layout max content width */
-  --max: 1140px;
+  /* Additional UI helpers */
+  --btn-hover-shadow: 0 8px 20px rgba(16,24,40,0.06);
+  --submenu-shadow: 0 12px 30px rgba(16,24,40,0.06);
+  --band-dark-overlay: rgba(0,0,0,0.08);
+  --img-hover-shadow: 0 12px 30px rgba(16,24,40,0.12);
 
-  /* palette */
-  --bg0: #0b101a; /* near black */
-  --bg1: #0d1424; /* header bg */
-  --bg2: #0b1220; /* section bg */
-  --surface: #0e1526;
-  --card: #0f172a;
-  --muted: #0b1220;
-
-  --primary: #0ea5a4; /* teal */
-  --primary-contrast: #0b1220;
-  --secondary: #7c3aed; /* purple */
-  --accent: #22d3ee; /* cyan */
-
-  /* text */
-  --text: #e5eefb; /* light text */
-  --text-dim: #a9bbd6;
-  --text-muted: #7b8ba2;
-
-  /* borders / shadows */
-  --border: rgba(255,255,255,0.08);
-  --border-strong: rgba(255,255,255,0.14);
-  --shadow: 0 10px 30px rgba(0,0,0,.35);
-
-  /* effects */
-  --glow: 0 15px 40px rgba(34,211,238,.15);
-  --btn-shadow: 0 8px 16px rgba(14,165,164,.24);
-  --btn-hover-shadow: 0 12px 24px rgba(14,165,164,.32);
-
-  /* gradients */
-  --grad-teal: linear-gradient(135deg, #0ea5a4, #22d3ee);
-  --grad-purple: linear-gradient(135deg, #7c3aed, #22d3ee);
-
-  /* hero progress vars */
-  --progress-track: rgba(255,255,255,0.12);
-  --progress-fill: rgba(255,255,255,0.95);
+  /* Background layers (light subtle) */
+  --bg0: #ffffff;
+  --bg1: #f8fafc;
+  --bg2: #eef2f7;
+  /* UI helpers */
+  --border: rgba(16,24,40,0.06);
+  --progress-track: rgba(16,24,40,0.06);
   --progress-inner-shadow: rgba(255,255,255,0.02);
   --focus-ring: rgba(14,165,164,0.12);
   --btn-secondary-bg: var(--card);
@@ -80,12 +61,8 @@
 
 /* Note: dark theme removed - site uses the light theme variables defined in :root */
 
-* {
-  box-sizing: border-box;
-}
-html, body {
-  height: 100%;
-}
+*{box-sizing:border-box}
+html,body{height:100%}
 body{
   margin:0;
   color:var(--text);
@@ -561,8 +538,9 @@ body.mobile-nav-open .hero-progress{
 .image-card{ transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease }
 
 /* Discover heading styles */
-.overline{ color:var(--primary); text-transform:uppercase; font-weight:700; letter-spacing:.08em; }
-.services .overline{ margin-bottom:8px; display:inline-block; }
+.overline{ color:var(--primary); text-transform:uppercase; font-weight:700; letter-spacing:.08em }
+.services .overline{ margin-bottom:8px; display:inline-block }
+
 
 /* Single centered TMS card */
 @media (min-width: 960px){
@@ -574,6 +552,7 @@ body.mobile-nav-open .hero-progress{
 @media (max-width: 600px){
   .cards-grid{grid-template-columns:1fr}
 }
+
 
 /* Footer */
 .site-footer{background:transparent;border-top:1px solid var(--border);padding:40px 0;margin-top:64px}
@@ -1064,54 +1043,4 @@ select{
 
   /* Ensure backgrounds still cover the full area */
   .hero-slider, .hero-slides, .hero-slide, .hero-slide .slide-bg { min-height: calc(100vh - 72px) !important; width:100% !important; }
-}
-
-@media (max-width: 960px) {
-  .hero-slider {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: calc(100vh - 60px); /* Adjust for header height */
-    margin: 0;
-    padding: 20px 15px; /* Add padding to top and sides */
-    box-sizing: border-box; /* Ensure padding doesn't affect width */
-  }
-
-  .hero-slide .slide-content {
-    max-width: 90%; /* Limit width for better readability */
-    margin: auto 0; /* Center content vertically */
-    text-align: left;
-    padding: 20px; /* Add padding for spacing */
-  }
-
-  .hero-slide .slide-bg {
-    background-size: cover;
-    background-position: center;
-  }
-
-  .hero-slide h1 {
-    font-size: 2rem; /* Adjust font size for better visibility */
-    line-height: 1.4; /* Improve readability */
-  }
-
-  .hero-slide p {
-    font-size: 1.2rem; /* Adjust paragraph font size */
-    line-height: 1.6; /* Improve readability */
-    margin-bottom: 20px; /* Add spacing below text */
-  }
-
-  .hero-slide a.btn {
-    font-size: 1rem; /* Adjust button font size */
-    padding: 10px 20px; /* Improve button spacing */
-  }
-}
-@media (max-width: 960px) {
-  .hero-slide {
-    align-items: flex-start; /* Keep top-aligned if desired */
-  }
-
-  .slide-content {
-    padding: 16px 16px 24px !important; /* Restore spacing */
-  }
 }
