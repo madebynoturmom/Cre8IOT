@@ -1053,16 +1053,34 @@ select{
     justify-content: center;
     min-height: calc(100vh - 60px); /* Adjust for header height */
     margin: 0;
-    padding: 0;
+    padding: 20px; /* Add padding for better spacing */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
   }
 
   .hero-slide .slide-content {
-    padding: 20px;
+    max-width: 90%; /* Limit width for better readability */
+    margin: 0 auto; /* Center content horizontally */
     text-align: left;
   }
 
   .hero-slide .slide-bg {
     background-size: cover;
     background-position: center;
+  }
+
+  .hero-slide h1 {
+    font-size: 1.8rem; /* Adjust font size for mobile */
+    line-height: 1.4; /* Improve readability */
+  }
+
+  .hero-slide p {
+    font-size: 1rem; /* Adjust paragraph font size */
+    line-height: 1.6; /* Improve readability */
+    margin-bottom: 20px; /* Add spacing below text */
+  }
+
+  .hero-slide a.btn {
+    font-size: 1rem; /* Adjust button font size */
+    padding: 10px 20px; /* Improve button spacing */
   }
 }
