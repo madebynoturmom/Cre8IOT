@@ -39,7 +39,8 @@ body {
   overflow: hidden;
   min-height: 100vh;
   color: var(--text);
-  padding-top: 72px; /* Account for header height */
+  margin-top: 0; /* Ensure no margin above the hero section */
+  padding-top: 0; /* Remove padding above the hero section */
 }
 
 .hero-slide {
@@ -82,7 +83,11 @@ body {
   .hero-slide .slide-content {
     padding-top: 20%; /* Add spacing from the top */
     margin: auto; /* Center horizontally */
-    text-align: center; /* Center text for mobile */
+    text-align: left; /* Left-align text */
+  }
+
+  .hero-slider {
+    padding-top: 72px; /* Account for header height */
   }
 }
 
@@ -98,6 +103,13 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+}
+
+/* Adjust services section to display 2 items per row */
+.services .cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+  gap: 24px; /* Maintain spacing between items */
 }
 
 .image-card {
@@ -177,4 +189,14 @@ body {
 .footer-links-list a:hover {
   text-decoration: underline;
   color: var(--primary);
+}
+
+/* Remove gap between header and hero section */
+.site-header {
+  margin-bottom: 0; /* Ensure no margin below the header */
+}
+
+/* Add padding to the top of the services section */
+.services {
+  padding-top: 40px; /* Add spacing above the services section */
 }
