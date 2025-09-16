@@ -1085,3 +1085,12 @@ select{
     padding: 10px 20px; /* Improve button spacing */
   }
 }
+@media (max-width: 960px) {
+  .hero-slide {
+    align-items: flex-start; /* Keep top-aligned if desired */
+  }
+
+  .slide-content {
+    padding: 16px 16px 24px !important; /* Restore spacing */
+  }
+}
