@@ -1,0 +1,202 @@
+/* Extracted CSS for index.html */
+
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --card: #fbfdff;
+  --text: #000000;
+  --muted: #475569;
+  --primary: #0ea5a4;
+  --primary-ink: #ffffff;
+  --accent: #5b21b6;
+  --max: 1152px;
+  --radius: 12px;
+  --gap: 24px;
+  --shadow: 0 8px 20px rgba(16, 24, 40, 0.06);
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, Ubuntu;
+  background: none;
+}
+
+.container {
+  max-width: var(--max);
+  margin: auto;
+  padding: 0 20px;
+}
+
+.hero {
+  position: relative;
+  padding: 0;
+}
+
+.hero-slider {
+  position: relative;
+  z-index: 20;
+  overflow: hidden;
+  min-height: 100vh;
+  color: var(--text);
+  margin-top: 0; /* Ensure no margin above the hero section */
+  padding-top: 0; /* Remove padding above the hero section */
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hero-slide .slide-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Restore old hero slide text design */
+.hero-slide .slide-content {
+  position: relative;
+  z-index: 20;
+  padding: 48px 20px; /* Consistent padding */
+  max-width: 600px; /* Consistent width */
+  margin: auto; /* Center horizontally */
+  text-align: left; /* Left-align text */
+  top: auto; /* Remove vertical centering */
+  transform: none; /* Remove transform */
+}
+
+/* Adjust hero slide text for mobile view */
+@media (max-width: 768px) {
+  .hero-slide .slide-content {
+    padding-top: 20%; /* Add spacing from the top */
+    margin: auto; /* Center horizontally */
+    text-align: left; /* Left-align text */
+  }
+
+  .hero-slider {
+    padding-top: 72px; /* Account for header height */
+  }
+}
+
+/* Ensure slide 1 and slide 2 designs are consistent */
+.hero-slide[data-index="0"],
+.hero-slide[data-index="1"] {
+  background-size: cover;
+  background-position: center;
+  color: var(--text);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Adjust services section to display 2 items per row */
+.services .cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+  gap: 24px; /* Maintain spacing between items */
+}
+
+.image-card {
+  display: block;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 160px;
+  background-size: cover;
+  background-position: center;
+  text-decoration: none;
+  color: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.image-card h3 {
+  color: #fff;
+  margin: 0;
+  font-weight: 800;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.band {
+  padding: 56px 0;
+}
+
+.band h2 {
+  margin: 0 0 12px;
+}
+
+.band p {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn.primary {
+  background: var(--primary);
+  color: var(--primary-ink);
+  border-color: transparent;
+  font-weight: 600;
+}
+
+.footer-grid {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 28px 20px;
+}
+
+.footer-links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 28px;
+}
+
+.footer-links-list a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-links-list a:hover {
+  text-decoration: underline;
+  color: var(--primary);
+}
+
+/* Remove gap between header and hero section */
+.site-header {
+  margin-bottom: 0; /* Ensure no margin below the header */
+}
+
+/* Add padding to the top of the services section */
+.services {
+  padding-top: 40px; /* Add spacing above the services section */
+}

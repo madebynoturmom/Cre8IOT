@@ -1,0 +1,397 @@
+/* === Smart City Page Combined CSS === */
+
+/* Hero Section */
+.smartcity-hero {
+  background: linear-gradient(90deg, #f8fafc 60%, #e6f0fa 100%);
+  padding: 3.5rem 1rem 2.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.smartcity-hero-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2.5rem;
+}
+.smartcity-hero-text {
+  flex: 1 1 350px;
+  min-width: 270px;
+}
+.smartcity-hero-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a365d;
+  margin-bottom: 1.1rem;
+  line-height: 1.15;
+}
+.smartcity-hero-desc {
+  font-size: 1.18rem;
+  color: #3a4a5d;
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+.smartcity-hero-cta {
+  display: inline-block;
+  background: #016f91;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.85rem 2.2rem;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 2px 12px rgba(26,140,43,0.08);
+  transition: background 0.2s;
+}
+.smartcity-hero-cta:hover {
+  background: #016f91;
+}
+/* Hero image wrapper and image improvements */
+.smartcity-hero-imgwrap {
+  flex: 1 1 320px;
+  min-width: 180px;
+  max-width: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.2rem auto;
+}
+.smartcity-hero-img {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  object-fit: contain;
+  background: #fff;
+}
+
+/* Featured Solutions Section */
+.featured-solutions-section {
+  background: #fafbfc;
+  padding: 3rem 1rem 2.5rem 1rem;
+  border-radius: 0.7rem;
+  margin: 2.5rem 0;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  padding: 0 300px; /* Add padding to the sides */
+}
+.featured-solutions-title {
+  font-size: 2.1rem;
+  font-weight: 900;
+  letter-spacing: 0.32em;
+  color: #333;
+  margin-bottom: 2.2rem;
+  text-align: left;
+  text-transform: uppercase;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+}
+.featured-solutions-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.2rem;
+  justify-content: flex-start;
+}
+.featured-tab-btn {
+  background: #fff;
+  border: 2px solid #222;
+  border-radius: 2rem;
+  padding: 0.7rem 2.1rem;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #222;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border 0.18s;
+  outline: none;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  margin-bottom: 0.5rem;
+}
+.featured-tab-btn.active {
+  background: #1a1aff;
+  color: #fff;
+  border-color: #1a1aff;
+}
+.featured-solutions-cards {
+  position: relative;
+  min-height: 320px;
+  padding: 0 20px; /* Add padding to prevent cards from touching page edges */
+  max-width: 1200px; /* Reduce the width of the section */
+  margin: 0 auto; /* Center the section */
+}
+.featured-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border: none; /* Remove border */
+  box-shadow: none; /* Remove shadow */
+  background-color: transparent; /* Make background transparent */
+  padding: 0; /* Remove padding */
+  gap: 2.5rem;
+  animation: fadeIn 0.4s;
+  transition: none; /* Remove hover transition */
+  height: auto; /* Increase height dynamically */
+  min-height: 500px; /* Set a minimum height */
+}
+.featured-card:hover {
+  transform: none; /* Disable lift effect */
+  box-shadow: none; /* Remove shadow on hover */
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: none; }
+}
+.featured-card-imgwrap {
+  flex: 1 1 200px;
+  min-width: 220px;
+  max-width: 2000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px; /* Reduced margin between image and text */
+}
+.featured-card-img {
+  width: 100%;
+  max-width: 550px; /* Slightly increased maximum width for larger images */
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.featured-card-content {
+  flex: 2 1 350px;
+  min-width: 220px;
+}
+.featured-card-content h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1a365d;
+}
+.featured-card-content p {
+  font-size: 1.08rem;
+  color: #333;
+  margin-bottom: 1.2rem;
+}
+.featured-card-link {
+  color: #1a1aff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.18s;
+}
+.featured-card-link:hover {
+  color: #0057d8;
+}
+.featured-card-btn {
+  background-color: #0057d8; /* Professional blue color */
+  color: #fff; /* White text */
+  border: none; /* Remove default border */
+  border-radius: 4px; /* Slightly rounded corners */
+  padding: 10px 20px; /* Add padding for better size */
+  font-size: 16px; /* Increase font size for readability */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
+}
+.featured-card-btn:hover {
+  background-color: #003f99; /* Darker blue on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+}
+
+/* Edge AI Solutions Section */
+.edge-ai-section {
+  padding: 3rem 1rem;
+  background: #f8f8f8;
+}
+.edge-ai-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+.edge-ai-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.edge-ai-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+.edge-ai-card {
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  padding: 2rem 1.2rem 1.5rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s;
+}
+.edge-ai-card:hover {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+}
+.edge-ai-card-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+.edge-ai-card-subtitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.edge-ai-card-img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  margin-bottom: 1rem;
+  border-radius: 0.7rem;
+}
+.edge-ai-card-list {
+  list-style: disc inside;
+  margin: 0 0 1rem 0;
+  padding: 0;
+  font-size: 0.98rem;
+  color: #444;
+  text-align: left;
+}
+.edge-ai-card-img-small {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  margin-top: 0.7rem;
+  border-radius: 0.5rem;
+}
+
+/* Removed the gas icons by clearing the container */
+.featured-card-content div[style*="justify-content: space-around"] {
+	display: none; /* Hide the gas icons container */
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .edge-ai-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 900px) {
+  .featured-solutions-title {
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+  }
+  .smartcity-hero-content {
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  .smartcity-hero-imgwrap {
+    justify-content: center;
+    max-width: 100vw;
+    margin-bottom: 1.2rem;
+  }
+  .smartcity-hero-img {
+    max-width: 80vw;
+    min-width: 120px;
+  }
+  .smartcity-hero-title {
+    font-size: 2rem;
+  }
+  .featured-solutions-title {
+    font-size: 1.4rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 1.2rem;
+  }
+  .featured-solutions-tabs {
+    justify-content: center;
+    gap: 0.7rem;
+  }
+  .featured-tab-btn {
+    font-size: 1rem;
+    padding: 0.6rem 1.3rem;
+  }
+  .featured-card {
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: center;
+    padding: 1.2rem 0.5rem;
+  }
+  .featured-card-imgwrap {
+    max-width: 100%;
+  }
+}
+@media (max-width: 700px) {
+  .edge-ai-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .edge-ai-section {
+    padding: 2rem 0.3rem;
+  }
+  .edge-ai-card {
+    padding: 1.2rem 0.7rem 1rem 0.7rem;
+  }
+  .edge-ai-title {
+    font-size: 1.3rem;
+  }
+}
+@media (max-width: 600px) {
+  .featured-solutions-title {
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+  }
+  .smartcity-hero {
+    padding: 2rem 0.2rem 1.2rem 0.2rem;
+  }
+  .smartcity-hero-title {
+    font-size: 1.3rem;
+  }
+  .smartcity-hero-desc {
+    font-size: 1rem;
+  }
+  .smartcity-hero-imgwrap {
+    max-width: 100vw;
+    margin-bottom: 1.2rem;
+  }
+  .smartcity-hero-img {
+    max-width: 90vw;
+    min-width: 100px;
+    height: auto;
+  }
+  .featured-solutions-section {
+    padding: 1.2rem 0.1rem 1.2rem 0.1rem;
+  }
+  .featured-solutions-title {
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.7rem;
+  }
+  .featured-solutions-tabs {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .featured-tab-btn {
+    font-size: 0.98rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.3rem;
+  }
+  .featured-card-content h3 {
+    font-size: 1.1rem;
+  }
+  .featured-card-content p {
+    font-size: 0.98rem;
+  }
+  .featured-card-img {
+    max-width: 180px;
+  }
+}
+.featured-card-imgwrap img {
+	width: 100%;
+	height: auto;
+	max-width: 550px; /* Slightly increased maximum width for larger images */
+	margin: 0 auto; /* Center the image */
+}

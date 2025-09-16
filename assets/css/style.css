@@ -1,24 +1,3 @@
-/* Circular progress for hero slider */
-.hero-circle-progress {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 0 0 18px;
-  height: 40px;
-  width: 40px;
-}
-.hero-circle-progress svg {
-  display: block;
-  transform: rotate(-90deg); /* start progress at top */
-}
-.hero-circle-progress .circle-bg {
-  stroke: #fff;
-  opacity: 0.18;
-}
-.hero-circle-progress .circle-fg {
-  stroke: var(--primary, #2dd4bf);
-  transition: stroke-dashoffset 0.2s linear;
-}
 /* =========================
    THEME & BASE
    ========================= */
@@ -1033,9 +1012,9 @@ select{
 /* Scoped to small and medium screens to avoid changing desktop layout */
 @media (max-width: 960px) {
   .hero, .hero-slider, .hero-slides, .hero-slide, .slide-content {
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 0 !important;
+    margin: 10 !important;
+    padding: 10px !important;
+    border: 10 !important;
   }
 
   /* If there's a .container inside the hero, remove its horizontal padding */
