@@ -40,9 +40,9 @@
   --accent: #22d3ee; /* cyan */
 
   /* text */
-  --text: #212529; /* dark text */
-  --text-dim: #495057;
-  --text-muted: #6c757d;
+  --text: #ffffff; /* dark text */
+  --text-dim: #ffffff;
+  --text-muted: #ffffff;
 
   /* borders / shadows */
   --border: rgba(0,0,0,0.08);
