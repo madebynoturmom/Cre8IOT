@@ -76,6 +76,15 @@ body {
   transform: none; /* Remove transform */
 }
 
+/* Adjust hero slide text for mobile view */
+@media (max-width: 768px) {
+  .hero-slide .slide-content {
+    padding-top: 20%; /* Add spacing from the top */
+    margin: auto; /* Center horizontally */
+    text-align: center; /* Center text for mobile */
+  }
+}
+
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
