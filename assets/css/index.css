@@ -39,6 +39,7 @@ body {
   overflow: hidden;
   min-height: 100vh;
   color: var(--text);
+  padding-top: 72px; /* Account for header height */
 }
 
 .hero-slide {
@@ -68,9 +69,9 @@ body {
 .hero-slide .slide-content {
   position: relative;
   z-index: 20;
-  padding: 48px 20px; /* Reduced padding */
-  max-width: 600px; /* Narrower width */
-  margin: 0; /* Align to the left */
+  padding: 48px 20px; /* Consistent padding */
+  max-width: 600px; /* Consistent width */
+  margin: auto; /* Center horizontally */
   text-align: left; /* Left-align text */
   top: auto; /* Remove vertical centering */
   transform: none; /* Remove transform */
@@ -83,6 +84,14 @@ body {
     margin: auto; /* Center horizontally */
     text-align: center; /* Center text for mobile */
   }
+}
+
+/* Ensure slide 1 and slide 2 designs are consistent */
+.hero-slide[data-index="0"],
+.hero-slide[data-index="1"] {
+  background-size: cover;
+  background-position: center;
+  color: var(--text);
 }
 
 .cards-grid {
