@@ -22,46 +22,38 @@
 /* =========================
    THEME & BASE
    ========================= */
-:root {
-  /* core layout max content width */
-  --max: 1140px;
+:root{
+  /* Light theme (default) */
+  --bg:#f8fafc;           /* page background */
+  --surface:#ffffff;      /* card / surface */
+  --card:#fbfdff;         /* subtle card background */
+  --text:#000000;         /* primary text (black) */
+  --muted:#475569;        /* muted text (slate) */
+  --primary:#0ea5a4;      /* teal */
+  --primary-ink:#ffffff;  /* text on primary */
+  --accent:#5b21b6;       /* purple accent */
+  --ring:#cbd5e1;
 
-  /* palette */
-  --bg0: #ffffff; /* white background */
-  --bg1: #f8f9fa; /* light header bg */
-  --bg2: #f1f3f5; /* light section bg */
-  --surface: #ffffff;
-  --card: #ffffff;
-  --muted: #e9ecef;
+  /* Layout */
+  --max:1152px;
+  --radius:12px;
+  --gap:24px;
+  --shadow:0 8px 20px rgba(16,24,40,0.06);
 
-  --primary: #0ea5a4; /* teal */
-  --primary-contrast: #ffffff;
-  --secondary: #7c3aed; /* purple */
-  --accent: #22d3ee; /* cyan */
+  /* Additional UI helpers */
+  --btn-hover-shadow: 0 8px 20px rgba(16,24,40,0.06);
+  --submenu-shadow: 0 12px 30px rgba(16,24,40,0.06);
+  --band-dark-overlay: rgba(0,0,0,0.08);
+  --img-hover-shadow: 0 12px 30px rgba(16,24,40,0.12);
 
-  /* Text color */
-  --text: #000000; /* Black text */
-  --text-dim: #333333; /* Dark gray for dim text */
-  --text-muted: #666666; /* Medium gray for muted text */
-
-  /* borders / shadows */
-  --border: rgba(0,0,0,0.08);
-  --border-strong: rgba(0,0,0,0.14);
-  --shadow: 0 10px 30px rgba(0,0,0,.15);
-
-  /* effects */
-  --glow: 0 15px 40px rgba(34,211,238,.15);
-  --btn-shadow: 0 8px 16px rgba(14,165,164,.24);
-  --btn-hover-shadow: 0 12px 24px rgba(14,165,164,.32);
-
-  /* gradients */
-  --grad-teal: linear-gradient(135deg, #0ea5a4, #22d3ee);
-  --grad-purple: linear-gradient(135deg, #7c3aed, #22d3ee);
-
-  /* hero progress vars */
-  --progress-track: rgba(0,0,0,0.12);
-  --progress-fill: rgba(0,0,0,0.95);
-  --progress-inner-shadow: rgba(0,0,0,0.02);
+  /* Background layers (light subtle) */
+  --bg0: #ffffff;
+  --bg1: #f8fafc;
+  --bg2: #eef2f7;
+  /* UI helpers */
+  --border: rgba(16,24,40,0.06);
+  --progress-track: rgba(16,24,40,0.06);
+  --progress-inner-shadow: rgba(255,255,255,0.02);
   --focus-ring: rgba(14,165,164,0.12);
   --btn-secondary-bg: var(--card);
   --primary-glow: rgba(14,165,164,0.12);
@@ -294,18 +286,11 @@ body.mobile-nav-open .hero-progress{
   border:1px solid var(--border);box-shadow:var(--shadow)}
 
 .hero-slider{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   position:relative;
   z-index:20;
   isolation:isolate;
   overflow:hidden;
-  min-height:calc(100vh - 60px); /* Adjust for header height */
-  margin: 0;
-  padding: 20px;
-  box-sizing: border-box; /* Ensure padding doesn't affect width */
+  min-height:100vh;
   color:var(--text);
   background: linear-gradient(180deg, rgba(16,24,40,0.04), rgba(8,10,12,0.02));
   margin-bottom:0;
@@ -553,8 +538,8 @@ body.mobile-nav-open .hero-progress{
 .image-card{ transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease }
 
 /* Discover heading styles */
-.overline{ color:var(--primary); text-transform:uppercase; font-weight:700; letter-spacing:.08em; }
-.services .overline{ margin-bottom:8px; display:inline-block; }
+.overline{ color:var(--primary); text-transform:uppercase; font-weight:700; letter-spacing:.08em }
+.services .overline{ margin-bottom:8px; display:inline-block }
 
 
 /* Single centered TMS card */
