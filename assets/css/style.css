@@ -1053,7 +1053,7 @@ select{
     justify-content: center;
     min-height: calc(100vh - 60px); /* Adjust for header height */
     margin: 0;
-    padding: 20px; /* Add padding for better spacing */
+    padding: 20px 15px; /* Add padding to top and sides */
     box-sizing: border-box; /* Ensure padding doesn't affect width */
   }
 
@@ -1061,7 +1061,7 @@ select{
     max-width: 90%; /* Limit width for better readability */
     margin: auto 0; /* Center content vertically */
     text-align: left;
-    padding-top: 20px; /* Add top padding for spacing */
+    padding-top: 40px; /* Add top padding for spacing */
   }
 
   .hero-slide .slide-bg {
