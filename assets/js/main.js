@@ -240,3 +240,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+// Smooth scroll to featured solution section
+const featuredTabButtons = document.querySelectorAll('.featured-tab-btn');
+
+featuredTabButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const solutionId = button.getAttribute('data-solution');
+    const targetSection = document.getElementById(`solution-${solutionId}`);
+
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
