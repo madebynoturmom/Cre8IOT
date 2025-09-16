@@ -1059,7 +1059,7 @@ select{
 
   .hero-slide .slide-content {
     max-width: 90%; /* Limit width for better readability */
-    margin: 0 auto; /* Center content horizontally */
+    margin: auto 0; /* Center content vertically */
     text-align: left;
   }
 
